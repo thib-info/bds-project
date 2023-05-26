@@ -1,0 +1,209 @@
+{
+    "id": "95e718b7-0f1a-4319-b4d0-b286fb25b8ac",
+    "object_id": "archiefgent:GP_FO_C_2513",
+    "ldesResource": null,
+    "type": "asset",
+    "objectNumber": [
+        {
+            "key": "object_number",
+            "value": "GP_FO_C_2513",
+            "__typename": "Metadata"
+        }
+    ],
+    "title": [
+        {
+            "key": "title",
+            "value": "Portret van mannelijke voetballer, 1920-1950",
+            "__typename": "Metadata"
+        }
+    ],
+    "description": [
+        {
+            "key": "description",
+            "value": "AA Gent",
+            "__typename": "Metadata"
+        }
+    ],
+    "scopeNote": [],
+    "publicationStatus": [],
+    "metadataCollection": [
+        {
+            "label": "objectnummer",
+            "nested": false,
+            "data": [
+                {
+                    "value": "GP_FO_C_2513",
+                    "unMappedKey": null,
+                    "label": "objectnummer",
+                    "nestedMetaData": null,
+                    "__typename": "Metadata"
+                }
+            ],
+            "__typename": "MetadataCollection"
+        }
+    ],
+    "primary_mediafile": "1124e21ffce3b16550c9b7b960048c19-GP_FO_C_2513.jpg",
+    "primary_mediafile_location": "https://api.collectie.gent/storage/v1/download/1124e21ffce3b16550c9b7b960048c19-GP_FO_C_2513.jpg",
+    "primary_transcode": "58d001cb97961fce707c9ef348e95c46-transcode-GP_FO_C_2513.jpg",
+    "primary_transcode_location": "https://api.collectie.gent/storage/v1/download/58d001cb97961fce707c9ef348e95c46-transcode-GP_FO_C_2513.jpg",
+    "mediafiles": [
+        {
+            "_id": "mediafiles/3af82edc-5cc8-4b22-8015-0a7b1e507a78",
+            "filename": "1124e21ffce3b16550c9b7b960048c19-GP_FO_C_2513.jpg",
+            "original_file_location": "https://api.collectie.gent/storage/v1/download/1124e21ffce3b16550c9b7b960048c19-GP_FO_C_2513.jpg",
+            "transcode_filename": "58d001cb97961fce707c9ef348e95c46-transcode-GP_FO_C_2513.jpg",
+            "transcode_file_location": "https://api.collectie.gent/storage/v1/download/58d001cb97961fce707c9ef348e95c46-transcode-GP_FO_C_2513.jpg",
+            "thumbnail_file_location": "https://api.collectie.gent/iiif/image/iiif/3/58d001cb97961fce707c9ef348e95c46-transcode-GP_FO_C_2513.jpg/full/,150/0/default.jpg",
+            "mimetype": "image/jpeg",
+            "mediatype": {
+                "type": "image/jpeg",
+                "mime": "IMGJPG",
+                "image": true,
+                "audio": false,
+                "video": false,
+                "pdf": false,
+                "__typename": "MimeType"
+            },
+            "metadata": [
+                {
+                    "key": "rights",
+                    "value": "CC BY-SA 4.0",
+                    "__typename": "MediaFileMetadata"
+                },
+                {
+                    "key": "source",
+                    "value": "Archief Gent",
+                    "__typename": "MediaFileMetadata"
+                },
+                {
+                    "key": "publication_status",
+                    "value": "publiek",
+                    "__typename": "MediaFileMetadata"
+                }
+            ],
+            "__typename": "MediaFile"
+        }
+    ],
+    "relations": [
+        {
+            "key": "entities/358c1bdc-bcd7-45ab-8b93-e2cd85d21aca",
+            "type": "isIn",
+            "label": "MaterieelDing.beheerder",
+            "value": "Archief Gent",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/194e3cd9-c66d-422c-824f-80ddc144c373",
+            "type": "components",
+            "label": "collectie",
+            "value": "Fotoarchief Georges Pieters",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/4b01fcb6-5ea1-4646-884e-f865f1bb8578",
+            "type": "components",
+            "label": "MaterieelDing.isOvergedragenBijVerwerving",
+            "value": "Verwerving",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/bb79e203-92f2-459e-90fd-2e87eab24f3a",
+            "type": "components",
+            "label": "Entiteit.classificatie",
+            "value": "Classificatie",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/24628a47-05ef-451f-8e4a-65ac7accef9a",
+            "type": "components",
+            "label": "object_category",
+            "value": "foto's Georges Pieters",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/40159e6c-3b15-453a-9a75-cbd418bbfa17",
+            "type": "components",
+            "label": "Entiteit.classificatie",
+            "value": "Classificatie",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/26ff37ca-a61c-4216-baf5-a3811f988268",
+            "type": "components",
+            "label": "objectnaam",
+            "value": "glasplaat",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/99490b02-9e07-46d3-8186-98826ec0a081",
+            "type": "components",
+            "label": "Entiteit.classificatie",
+            "value": "Classificatie",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/dc6361f2-3591-48bb-9cf4-86f7924ce084",
+            "type": "components",
+            "label": "Classificatie.toegekendType",
+            "value": "AA Gent",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/2bdbd2d7-c035-4dd2-97a5-e1f2422be8fe",
+            "type": "components",
+            "label": "Entiteit.classificatie",
+            "value": "Classificatie",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/ba1fa55c-7a85-41c8-b0a9-6d2f5f052401",
+            "type": "components",
+            "label": "Classificatie.toegekendType",
+            "value": "sport",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/17c9d995-ff4c-42c5-aeae-8f80303ce2e3",
+            "type": "components",
+            "label": "Entiteit.classificatie",
+            "value": "Classificatie",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/ca4eee7d-ca54-4784-b9c3-966a0fac456d",
+            "type": "components",
+            "label": "Classificatie.toegekendType",
+            "value": "persfotografie",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/478702a2-3da1-47a4-9a0f-73585bf79223",
+            "type": "components",
+            "label": "MaterieelDing.productie",
+            "value": "Productie",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/eb122e93-c2bf-43e3-a115-13f9400aaff0",
+            "type": "components",
+            "label": "vervaardiger",
+            "value": "Pieters, Georges",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/da087e40-82ee-4292-a856-f84b76256164",
+            "type": "components",
+            "label": "vervaardiging.plaats",
+            "value": "Gent",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/113bfeb9-3f74-4c78-81ea-5ae0cb0244ac",
+            "type": "components",
+            "label": "MensgemaaktObject.draagt",
+            "value": "InformatieObject",
+            "__typename": "Relation"
+        }
+    ],
+    "__typename": "Entity"
+}

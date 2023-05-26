@@ -1,0 +1,202 @@
+{
+    "id": "9b42c9fe-a12c-41d6-99d8-a94a46ce394a",
+    "object_id": "stam:00060",
+    "ldesResource": null,
+    "type": "asset",
+    "objectNumber": [
+        {
+            "key": "object_number",
+            "value": "00060",
+            "__typename": "Metadata"
+        }
+    ],
+    "title": [
+        {
+            "key": "title",
+            "value": "Fles met vergulde dop",
+            "__typename": "Metadata"
+        }
+    ],
+    "description": [
+        {
+            "key": "description",
+            "value": "Vierkante basis en ronde hals. Glazen stop met brede onderaan geribde en bovenaan vergulde knop. Het onder- en bovendeel van de in het midden versmallende buik is door vijf gescheiden doorgangen verbonden.",
+            "__typename": "Metadata"
+        }
+    ],
+    "scopeNote": [],
+    "publicationStatus": [],
+    "metadataCollection": [
+        {
+            "label": "objectnummer",
+            "nested": false,
+            "data": [
+                {
+                    "value": "00060",
+                    "unMappedKey": null,
+                    "label": "objectnummer",
+                    "nestedMetaData": null,
+                    "__typename": "Metadata"
+                }
+            ],
+            "__typename": "MetadataCollection"
+        },
+        {
+            "label": "hoogte",
+            "nested": false,
+            "data": [
+                {
+                    "value": "30.8 cm",
+                    "unMappedKey": null,
+                    "label": "hoogte",
+                    "nestedMetaData": null,
+                    "__typename": "Metadata"
+                }
+            ],
+            "__typename": "MetadataCollection"
+        },
+        {
+            "label": "diepte",
+            "nested": false,
+            "data": [
+                {
+                    "value": "10.6 cm",
+                    "unMappedKey": null,
+                    "label": "diepte",
+                    "nestedMetaData": null,
+                    "__typename": "Metadata"
+                }
+            ],
+            "__typename": "MetadataCollection"
+        },
+        {
+            "label": "breedte",
+            "nested": false,
+            "data": [
+                {
+                    "value": "10.7 cm",
+                    "unMappedKey": null,
+                    "label": "breedte",
+                    "nestedMetaData": null,
+                    "__typename": "Metadata"
+                }
+            ],
+            "__typename": "MetadataCollection"
+        }
+    ],
+    "primary_mediafile": "09461196e87faf0dbbef5576ddeb203b-00060.JPG",
+    "primary_mediafile_location": "https://api.collectie.gent/storage/v1/download/09461196e87faf0dbbef5576ddeb203b-00060.JPG",
+    "primary_transcode": "7bcaa017576c30270eed66ea8f8ee69f-transcode-00060.jpg",
+    "primary_transcode_location": "https://api.collectie.gent/storage/v1/download/7bcaa017576c30270eed66ea8f8ee69f-transcode-00060.jpg",
+    "mediafiles": [
+        {
+            "_id": "mediafiles/74c73359-6823-41d7-abe6-6880787dff08",
+            "filename": "09461196e87faf0dbbef5576ddeb203b-00060.JPG",
+            "original_file_location": "https://api.collectie.gent/storage/v1/download/09461196e87faf0dbbef5576ddeb203b-00060.JPG",
+            "transcode_filename": "7bcaa017576c30270eed66ea8f8ee69f-transcode-00060.jpg",
+            "transcode_file_location": "https://api.collectie.gent/storage/v1/download/7bcaa017576c30270eed66ea8f8ee69f-transcode-00060.jpg",
+            "thumbnail_file_location": "https://api.collectie.gent/iiif/image/iiif/3/7bcaa017576c30270eed66ea8f8ee69f-transcode-00060.jpg/full/,150/0/default.jpg",
+            "mimetype": "image/jpeg",
+            "mediatype": {
+                "type": "image/jpeg",
+                "mime": "IMGJPG",
+                "image": true,
+                "audio": false,
+                "video": false,
+                "pdf": false,
+                "__typename": "MimeType"
+            },
+            "metadata": [
+                {
+                    "key": "rights",
+                    "value": "CC0 1.0",
+                    "__typename": "MediaFileMetadata"
+                },
+                {
+                    "key": "source",
+                    "value": "STAM - Stadsmuseum Gent",
+                    "__typename": "MediaFileMetadata"
+                },
+                {
+                    "key": "publication_status",
+                    "value": "publiek",
+                    "__typename": "MediaFileMetadata"
+                }
+            ],
+            "__typename": "MediaFile"
+        }
+    ],
+    "relations": [
+        {
+            "key": "entities/f65f1cf0-5fc3-4dd4-a190-60b4166ce8df",
+            "type": "isIn",
+            "label": "MaterieelDing.beheerder",
+            "value": "STAM - Stadsmuseum Gent",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/b4e1efb5-2e93-4e2d-a4a3-c8f68d7c5fbc",
+            "type": "components",
+            "label": "MaterieelDing.isOvergedragenBijVerwerving",
+            "value": "Verwerving",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/bddaeb3f-92b1-4217-9d14-3d5d7f643919",
+            "type": "components",
+            "label": "Entiteit.classificatie",
+            "value": "Classificatie",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/2141abde-46f1-462e-8b7a-40b6d9de3aa0",
+            "type": "components",
+            "label": "objectnaam",
+            "value": "fles",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/51a7d8c6-b421-46af-ae03-6c26d1541bbe",
+            "type": "components",
+            "label": "Entiteit.maaktDeelUitVan",
+            "value": "Collectie",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/8be7b388-5ed1-460e-b0ee-25d57703cf02",
+            "type": "components",
+            "label": "MaterieelDing.productie",
+            "value": "Productie",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/22001dab-24f6-417f-b0ad-9f1d50771e11",
+            "type": "components",
+            "label": "vervaardiger",
+            "value": "onbekend",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/5169e79b-0ec7-4b8b-b730-d79928953e50",
+            "type": "components",
+            "label": "vervaardiging.plaats",
+            "value": "Belgi\u00eb",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/c2afeb23-32fb-4a91-b1b5-2f917571320c",
+            "type": "components",
+            "label": "MensgemaaktObject.draagt",
+            "value": "InformatieObject",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/e12711c1-8bba-44f4-8460-dfeb0030db79",
+            "type": "components",
+            "label": "materiaal",
+            "value": "glas (materiaal)",
+            "__typename": "Relation"
+        }
+    ],
+    "__typename": "Entity"
+}

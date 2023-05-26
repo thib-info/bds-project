@@ -1,0 +1,202 @@
+{
+    "id": "c1a7c501-469c-4718-b509-95453c816b75",
+    "object_id": "hva:1980-223-088",
+    "ldesResource": null,
+    "type": "asset",
+    "objectNumber": [
+        {
+            "key": "object_number",
+            "value": "1980-223-088",
+            "__typename": "Metadata"
+        }
+    ],
+    "title": [
+        {
+            "key": "title",
+            "value": "Adreskaart van stoffeerder, behanger en verkoper van stoffen en behangpapier Charles Verstraete, Gent",
+            "__typename": "Metadata"
+        }
+    ],
+    "description": [
+        {
+            "key": "description",
+            "value": "Adreskaart van stoffeerder, behanger en verkoper van stoffen en behangpapier Charles Verstraete. Drukkleuren: blauw, roodbruin, kaki. Opschrift: Rue De Brabant, N\u00b0 15. Ch[arle]s Verstraete Tapissier, Gand. Magasin de papiers peints, bordures, rideaux brod\u00e9s, galeries, ornemens &a. Placement par entreprise de papiers peints et de tout ce qui concerne son \u00e9tat \u00e0 des prix tr\u00e8s mod\u00e9r\u00e9s.",
+            "__typename": "Metadata"
+        }
+    ],
+    "scopeNote": [],
+    "publicationStatus": [],
+    "metadataCollection": [
+        {
+            "label": "objectnummer",
+            "nested": false,
+            "data": [
+                {
+                    "value": "1980-223-088",
+                    "unMappedKey": null,
+                    "label": "objectnummer",
+                    "nestedMetaData": null,
+                    "__typename": "Metadata"
+                }
+            ],
+            "__typename": "MetadataCollection"
+        }
+    ],
+    "primary_mediafile": "d41d8cd98f00b204e9800998ecf8427e-F1.mp3",
+    "primary_mediafile_location": "https://api.collectie.gent/storage/v1/download/d41d8cd98f00b204e9800998ecf8427e-F1.mp3",
+    "primary_transcode": null,
+    "primary_transcode_location": "https://api.collectie.gent/storage/v1None",
+    "mediafiles": [
+        {
+            "_id": "mediafiles/1408ba40-5add-4055-a1a6-f26a803434ac",
+            "filename": "d41d8cd98f00b204e9800998ecf8427e-F1.mp3",
+            "original_file_location": "https://api.collectie.gent/storage/v1/download/d41d8cd98f00b204e9800998ecf8427e-F1.mp3",
+            "transcode_filename": null,
+            "transcode_file_location": null,
+            "thumbnail_file_location": "https://api.collectie.gent/iiif/image/iiif/3/d41d8cd98f00b204e9800998ecf8427e-F1.mp3/full/,150/0/default.jpg",
+            "mimetype": "application/x-empty",
+            "mediatype": {
+                "type": "application/x-empty",
+                "mime": null,
+                "image": null,
+                "audio": null,
+                "video": null,
+                "pdf": null,
+                "__typename": "MimeType"
+            },
+            "metadata": [
+                {
+                    "key": "rights",
+                    "value": "Public Domain Mark 1.0",
+                    "__typename": "MediaFileMetadata"
+                },
+                {
+                    "key": "source",
+                    "value": "Huis van Alijn",
+                    "__typename": "MediaFileMetadata"
+                },
+                {
+                    "key": "publication_status",
+                    "value": "publiek",
+                    "__typename": "MediaFileMetadata"
+                }
+            ],
+            "__typename": "MediaFile"
+        }
+    ],
+    "relations": [
+        {
+            "key": "entities/94c0a4e6-0511-473b-939a-93c5fa989d9a",
+            "type": "isIn",
+            "label": "MaterieelDing.beheerder",
+            "value": "Huis van Alijn",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/d1ccbef9-109a-4bcc-bf24-c3b75a444922",
+            "type": "components",
+            "label": "Entiteit.classificatie",
+            "value": "Classificatie",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/49d8e2cd-9df7-4c2b-89cf-ec068efe6f96",
+            "type": "components",
+            "label": "objectnaam",
+            "value": "porseleinkaart",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/b9dd0b9b-2173-493c-aa2b-b0cf070fa87e",
+            "type": "components",
+            "label": "Entiteit.classificatie",
+            "value": "Classificatie",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/3ae9d64b-0c32-4bc7-8be6-fddd62dc9ea4",
+            "type": "components",
+            "label": "objectnaam",
+            "value": "adreskaart",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/6540d96c-f473-4923-8789-4e745ffd5afe",
+            "type": "components",
+            "label": "MaterieelDing.productie",
+            "value": "Productie",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/4f8cfcad-9e15-4f48-b4f7-7733275491da",
+            "type": "components",
+            "label": "vervaardiger",
+            "value": "Gyselynck, Ferdinand en Edouard",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/fd5f3888-ad34-4d4f-87f5-9bc2ab4d49a7",
+            "type": "components",
+            "label": "vervaardiging.plaats",
+            "value": "Gent",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/51245246-c70b-47eb-a566-1733d9fe7e20",
+            "type": "components",
+            "label": "MensgemaaktObject.draagt",
+            "value": "InformatieObject",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/fd5f3888-ad34-4d4f-87f5-9bc2ab4d49a7",
+            "type": "components",
+            "label": "associatie.onderwerp",
+            "value": "Gent",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/84725515-1d5d-40a8-b1f4-1b5c17ee0c8d",
+            "type": "components",
+            "label": "associatie.onderwerp",
+            "value": "Brabantdam (Gent)",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/49148a7a-995d-448a-8db7-1af96a638191",
+            "type": "components",
+            "label": "associatie.onderwerp",
+            "value": "behanger",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/23327f90-676e-4368-af61-ce2319aeaedd",
+            "type": "components",
+            "label": "associatie.onderwerp",
+            "value": "stoffeerder",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/a9f63ce1-d1b0-4055-a20e-aeed0a866f37",
+            "type": "components",
+            "label": "associatie.periode",
+            "value": "19de eeuw",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/9728fb49-158a-4660-a0fc-482bc7ca7e1c",
+            "type": "components",
+            "label": "inhoud.onderwerp",
+            "value": "gordijn",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/1443b826-17bf-45cc-8910-6e5e09a2a71f",
+            "type": "components",
+            "label": "inhoud.onderwerp",
+            "value": "engel",
+            "__typename": "Relation"
+        }
+    ],
+    "__typename": "Entity"
+}

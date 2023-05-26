@@ -1,0 +1,139 @@
+{
+    "id": "e586d0de-8859-49f9-a2a2-a438a57d8830",
+    "object_id": "hva:1926-017",
+    "ldesResource": null,
+    "type": "asset",
+    "objectNumber": [
+        {
+            "key": "object_number",
+            "value": "1926-017",
+            "__typename": "Metadata"
+        }
+    ],
+    "title": [
+        {
+            "key": "title",
+            "value": "Koffiekan van geel koper",
+            "__typename": "Metadata"
+        }
+    ],
+    "description": [
+        {
+            "key": "description",
+            "value": "Koffiekan in de vorm van een afgeknotte kegel. De kan heeft een lange, smalle tuit. Naar boven toe versmalt deze. Het deksel met eikelvormige knop is van een andere kwaliteit dan deze van het lichaam. Het handvat is oorvormig en wordt smaller naar onderen toe. De bodem is hol en draagt een ruitpatroon. Op een rode, koperen band aan de hals is een inscriptie aangebracht: ortantia antonia Verstringe geboren den 26 Junij 1830. Den peter franciscus Duroeck.",
+            "__typename": "Metadata"
+        }
+    ],
+    "scopeNote": [],
+    "publicationStatus": [],
+    "metadataCollection": [
+        {
+            "label": "objectnummer",
+            "nested": false,
+            "data": [
+                {
+                    "value": "1926-017",
+                    "unMappedKey": null,
+                    "label": "objectnummer",
+                    "nestedMetaData": null,
+                    "__typename": "Metadata"
+                }
+            ],
+            "__typename": "MetadataCollection"
+        }
+    ],
+    "primary_mediafile": "459354aa05cda70f739459772630962d-1926-017.TIF",
+    "primary_mediafile_location": "https://api.collectie.gent/storage/v1/download/459354aa05cda70f739459772630962d-1926-017.TIF",
+    "primary_transcode": "89a25602436b357d52a7005650d3173e-transcode-1926-017.jpg",
+    "primary_transcode_location": "https://api.collectie.gent/storage/v1/download/89a25602436b357d52a7005650d3173e-transcode-1926-017.jpg",
+    "mediafiles": [
+        {
+            "_id": "mediafiles/fa983100-aeff-459d-adc6-31723c15bcec",
+            "filename": "459354aa05cda70f739459772630962d-1926-017.TIF",
+            "original_file_location": "https://api.collectie.gent/storage/v1/download/459354aa05cda70f739459772630962d-1926-017.TIF",
+            "transcode_filename": "89a25602436b357d52a7005650d3173e-transcode-1926-017.jpg",
+            "transcode_file_location": "https://api.collectie.gent/storage/v1/download/89a25602436b357d52a7005650d3173e-transcode-1926-017.jpg",
+            "thumbnail_file_location": "https://api.collectie.gent/iiif/image/iiif/3/89a25602436b357d52a7005650d3173e-transcode-1926-017.jpg/full/,150/0/default.jpg",
+            "mimetype": "image/tiff",
+            "mediatype": {
+                "type": "image/tiff",
+                "mime": "IMGTIFF",
+                "image": true,
+                "audio": false,
+                "video": false,
+                "pdf": false,
+                "__typename": "MimeType"
+            },
+            "metadata": [
+                {
+                    "key": "rights",
+                    "value": "CC0 1.0",
+                    "__typename": "MediaFileMetadata"
+                },
+                {
+                    "key": "source",
+                    "value": "Huis van Alijn",
+                    "__typename": "MediaFileMetadata"
+                },
+                {
+                    "key": "publication_status",
+                    "value": "publiek",
+                    "__typename": "MediaFileMetadata"
+                }
+            ],
+            "__typename": "MediaFile"
+        }
+    ],
+    "relations": [
+        {
+            "key": "entities/94c0a4e6-0511-473b-939a-93c5fa989d9a",
+            "type": "isIn",
+            "label": "MaterieelDing.beheerder",
+            "value": "Huis van Alijn",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/2f201c18-f019-451c-88d3-c9b864289b7a",
+            "type": "components",
+            "label": "Entiteit.classificatie",
+            "value": "Classificatie",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/3f9e6eb9-dcdc-494c-a80a-aba49b7a2ed6",
+            "type": "components",
+            "label": "objectnaam",
+            "value": "koffiekan",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/d2252d79-c3a0-42b2-be05-9bb2b4d70970",
+            "type": "components",
+            "label": "MensgemaaktObject.draagt",
+            "value": "InformatieObject",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/e491bd0e-ebc7-49fa-b24f-3129ad9c6c9e",
+            "type": "components",
+            "label": "associatie.onderwerp",
+            "value": "keuken",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/078a7f32-e98a-4ff8-88eb-cdb63ac92ab6",
+            "type": "components",
+            "label": "associatie.onderwerp",
+            "value": "huishouden",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/a9f63ce1-d1b0-4055-a20e-aeed0a866f37",
+            "type": "components",
+            "label": "associatie.periode",
+            "value": "19de eeuw",
+            "__typename": "Relation"
+        }
+    ],
+    "__typename": "Entity"
+}
