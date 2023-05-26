@@ -1,0 +1,167 @@
+{
+    "id": "55c8bb4f-f687-4342-96c6-abe92f546f26",
+    "object_id": "hva:1926-705",
+    "ldesResource": null,
+    "type": "asset",
+    "objectNumber": [
+        {
+            "key": "object_number",
+            "value": "1926-705",
+            "__typename": "Metadata"
+        }
+    ],
+    "title": [
+        {
+            "key": "title",
+            "value": "Beeld van vrouw met kind",
+            "__typename": "Metadata"
+        }
+    ],
+    "description": [
+        {
+            "key": "description",
+            "value": "Beeld van een zittende vrouw met een kind op haar schoot. Haar rechterhand veegt het achterwerk van het kind schoon, terwijl haar linkerarm het kind stevig vast heeft. De vrouw draagt eenvoudige kledij. De grote gedecoreerde omslagdoek wordt over de schouders gelegd en bedekt de borst. Het doek ligt diep weggeplooid in de nek. Hals en nek blijven hierdoor erg bloot. Verder draagt de vrouw een losse, lange jurk met klompen aan de voeten.",
+            "__typename": "Metadata"
+        }
+    ],
+    "scopeNote": [],
+    "publicationStatus": [],
+    "metadataCollection": [
+        {
+            "label": "objectnummer",
+            "nested": false,
+            "data": [
+                {
+                    "value": "1926-705",
+                    "unMappedKey": null,
+                    "label": "objectnummer",
+                    "nestedMetaData": null,
+                    "__typename": "Metadata"
+                }
+            ],
+            "__typename": "MetadataCollection"
+        }
+    ],
+    "primary_mediafile": "ec0c65dbac7bdac45890e3527b00bf49-1926-705.tif",
+    "primary_mediafile_location": "https://api.collectie.gent/storage/v1/download/ec0c65dbac7bdac45890e3527b00bf49-1926-705.tif",
+    "primary_transcode": "834db586ab34c4ead14259e5b3abfe4f-transcode-1926-705.jpg",
+    "primary_transcode_location": "https://api.collectie.gent/storage/v1/download/834db586ab34c4ead14259e5b3abfe4f-transcode-1926-705.jpg",
+    "mediafiles": [
+        {
+            "_id": "mediafiles/7f4b9e88-cc46-4b80-b92a-8125be03677b",
+            "filename": "ec0c65dbac7bdac45890e3527b00bf49-1926-705.tif",
+            "original_file_location": "https://api.collectie.gent/storage/v1/download/ec0c65dbac7bdac45890e3527b00bf49-1926-705.tif",
+            "transcode_filename": "834db586ab34c4ead14259e5b3abfe4f-transcode-1926-705.jpg",
+            "transcode_file_location": "https://api.collectie.gent/storage/v1/download/834db586ab34c4ead14259e5b3abfe4f-transcode-1926-705.jpg",
+            "thumbnail_file_location": "https://api.collectie.gent/iiif/image/iiif/3/834db586ab34c4ead14259e5b3abfe4f-transcode-1926-705.jpg/full/,150/0/default.jpg",
+            "mimetype": "image/tiff",
+            "mediatype": {
+                "type": "image/tiff",
+                "mime": "IMGTIFF",
+                "image": true,
+                "audio": false,
+                "video": false,
+                "pdf": false,
+                "__typename": "MimeType"
+            },
+            "metadata": [
+                {
+                    "key": "rights",
+                    "value": "In Copyright - unknown rightsholder",
+                    "__typename": "MediaFileMetadata"
+                },
+                {
+                    "key": "source",
+                    "value": "Huis van Alijn",
+                    "__typename": "MediaFileMetadata"
+                },
+                {
+                    "key": "publication_status",
+                    "value": "publiek",
+                    "__typename": "MediaFileMetadata"
+                }
+            ],
+            "__typename": "MediaFile"
+        }
+    ],
+    "relations": [
+        {
+            "key": "entities/94c0a4e6-0511-473b-939a-93c5fa989d9a",
+            "type": "isIn",
+            "label": "MaterieelDing.beheerder",
+            "value": "Huis van Alijn",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/e6f35a83-4bee-4926-b8f7-6b6a1e6ff84e",
+            "type": "components",
+            "label": "MaterieelDing.productie",
+            "value": "Productie",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/15bc62d2-29e0-486e-a3ed-80e49f75739e",
+            "type": "components",
+            "label": "techniek",
+            "value": "polychromie",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/97a1f6c3-619e-41a9-ae2c-4a89bfb1b57b",
+            "type": "components",
+            "label": "Entiteit.classificatie",
+            "value": "Classificatie",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/3fd38b0d-cecc-4de6-a96c-14afe8b88818",
+            "type": "components",
+            "label": "objectnaam",
+            "value": "beeld (vrijstaand)",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/1dc01792-b2eb-4fe3-8216-cd8399021c0d",
+            "type": "components",
+            "label": "Entiteit.classificatie",
+            "value": "Classificatie",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/95d51761-beab-4a9d-88b6-422fb7910de4",
+            "type": "components",
+            "label": "object_category",
+            "value": "beeldhouwwerk",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/07a3b382-372d-4c41-befe-641721f7f7ea",
+            "type": "components",
+            "label": "MensgemaaktObject.draagt",
+            "value": "InformatieObject",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/ef9634ee-cbf7-44fb-8710-ade504259cc1",
+            "type": "components",
+            "label": "associatie.onderwerp",
+            "value": "geboorte",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/817c5fc3-ccb1-45ae-9833-a51d0ea5ffd5",
+            "type": "components",
+            "label": "associatie.onderwerp",
+            "value": "babyverzorging",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/80bb4839-12f0-44ef-aa61-c8c701f53b0b",
+            "type": "components",
+            "label": "inhoud.onderwerp",
+            "value": "baby",
+            "__typename": "Relation"
+        }
+    ],
+    "__typename": "Entity"
+}

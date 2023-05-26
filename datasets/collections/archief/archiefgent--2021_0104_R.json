@@ -1,0 +1,160 @@
+{
+    "id": "7a64a38b-cc2b-4c16-851f-41445574b571",
+    "object_id": "archiefgent:2021_0104_R",
+    "ldesResource": null,
+    "type": "asset",
+    "objectNumber": [
+        {
+            "key": "object_number",
+            "value": "2021_0104_R",
+            "__typename": "Metadata"
+        }
+    ],
+    "title": [
+        {
+            "key": "title",
+            "value": "Figuratieve kaart van de eigendommen van Anthonis Garemijn in Eke, 1625-1668",
+            "__typename": "Metadata"
+        }
+    ],
+    "description": [
+        {
+            "key": "description",
+            "value": "Figuratieve kaart van de eigendommen van Anthonis Garemijn (1585-1668), procureur in de Raad van Vlaanderen en inwoner van Gent, in Eke (groen ingekleurd op de kaart), gelegen tussen de Oude Schelde (links op de kaart, nu ligt hier de gewestweg N60), de (oude) Sint-Amanduskerk (onder), de heerweg van Gent naar Oudenaarde (rechts) en een dreef en de eigendom van de weduwe van Melchior Luytens (boven). Het kasteel of landhuis met torentje in een ommuurd en omgracht domein (nr. 5 op de kaart) is nog bewaard, weliswaar in verbouwde toestand (https://inventaris.onroerenderfgoed.be/erfgoedobjecten/38686). Van de oude Sint-Amanduskerk (nr. 2 op de kaart) rest enkel nog de toren (https://inventaris.onroerenderfgoed.be/erfgoedobjecten/38656).\r\n\r\nDe kaart dateert ten vroegste van 1625, toen Anthonis Garemijn dit domein in Eke kocht van de erfgenamen van Frederik van der Burcht. De namen van de eigenaars van de percelen in cursieve hand (Anthonis Garemijn en de weduwe van Melchior Luytens) zijn vermoedelijk later toegevoegd, mogelijk in 1665, toen beiden met elkaar in proces lagen voor de Raad van Vlaanderen wegens het kappen van een boom in de dreef (nr. 9 op de kaart), en in elk geval voor het overlijden van Garemijn in 1668.",
+            "__typename": "Metadata"
+        }
+    ],
+    "scopeNote": [],
+    "publicationStatus": [],
+    "metadataCollection": [
+        {
+            "label": "objectnummer",
+            "nested": false,
+            "data": [
+                {
+                    "value": "2021_0104_R",
+                    "unMappedKey": null,
+                    "label": "objectnummer",
+                    "nestedMetaData": null,
+                    "__typename": "Metadata"
+                }
+            ],
+            "__typename": "MetadataCollection"
+        }
+    ],
+    "primary_mediafile": "5bd5d4445cba67be616570fa8c5bc4cb-2021_0104_R.tif",
+    "primary_mediafile_location": "https://api.collectie.gent/storage/v1/download/5bd5d4445cba67be616570fa8c5bc4cb-2021_0104_R.tif",
+    "primary_transcode": "851e14e8efa03a02234c347c8449f731-transcode-2021_0104_R.jpg",
+    "primary_transcode_location": "https://api.collectie.gent/storage/v1/download/851e14e8efa03a02234c347c8449f731-transcode-2021_0104_R.jpg",
+    "mediafiles": [
+        {
+            "_id": "mediafiles/83ab1f2c-0fac-4390-9f87-0e6a8745828a",
+            "filename": "5bd5d4445cba67be616570fa8c5bc4cb-2021_0104_R.tif",
+            "original_file_location": "https://api.collectie.gent/storage/v1/download/5bd5d4445cba67be616570fa8c5bc4cb-2021_0104_R.tif",
+            "transcode_filename": "851e14e8efa03a02234c347c8449f731-transcode-2021_0104_R.jpg",
+            "transcode_file_location": "https://api.collectie.gent/storage/v1/download/851e14e8efa03a02234c347c8449f731-transcode-2021_0104_R.jpg",
+            "thumbnail_file_location": "https://api.collectie.gent/iiif/image/iiif/3/851e14e8efa03a02234c347c8449f731-transcode-2021_0104_R.jpg/full/,150/0/default.jpg",
+            "mimetype": "image/tiff",
+            "mediatype": {
+                "type": "image/tiff",
+                "mime": "IMGTIFF",
+                "image": true,
+                "audio": false,
+                "video": false,
+                "pdf": false,
+                "__typename": "MimeType"
+            },
+            "metadata": [
+                {
+                    "key": "rights",
+                    "value": "Public Domain Mark 1.0",
+                    "__typename": "MediaFileMetadata"
+                },
+                {
+                    "key": "source",
+                    "value": "Archief Gent",
+                    "__typename": "MediaFileMetadata"
+                },
+                {
+                    "key": "publication_status",
+                    "value": "publiek",
+                    "__typename": "MediaFileMetadata"
+                }
+            ],
+            "__typename": "MediaFile"
+        }
+    ],
+    "relations": [
+        {
+            "key": "entities/358c1bdc-bcd7-45ab-8b93-e2cd85d21aca",
+            "type": "isIn",
+            "label": "MaterieelDing.beheerder",
+            "value": "Archief Gent",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/84684677-93d1-4ac0-9dab-4796deab56f9",
+            "type": "components",
+            "label": "collectie",
+            "value": "Aanwinst 2021_0104",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/1db6fc75-01d6-4812-96dd-6d11317851fd",
+            "type": "components",
+            "label": "MaterieelDing.isOvergedragenBijVerwerving",
+            "value": "Verwerving",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/d6d9f5f0-b6fd-437c-a8c0-e0bd00370b4b",
+            "type": "components",
+            "label": "Entiteit.classificatie",
+            "value": "Classificatie",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/3ef1f63c-cee6-4b98-99ae-5433e261a47f",
+            "type": "components",
+            "label": "object_category",
+            "value": "figuratieve kaart",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/b707b3e1-cb37-4ff0-804f-66768c5293e1",
+            "type": "components",
+            "label": "Entiteit.classificatie",
+            "value": "Classificatie",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/31337246-21ad-451f-b2d9-727bc4037b7e",
+            "type": "components",
+            "label": "objectnaam",
+            "value": "kaart",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/fcbdef60-39a3-4b05-a4a2-176628ad307d",
+            "type": "components",
+            "label": "MaterieelDing.productie",
+            "value": "Productie",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/01fc7b98-53ed-413a-a331-00286c43240c",
+            "type": "components",
+            "label": "vervaardiger",
+            "value": "onbekend",
+            "__typename": "Relation"
+        },
+        {
+            "key": "entities/13575828-5a08-4876-be53-9b55bc113aa0",
+            "type": "components",
+            "label": "MensgemaaktObject.draagt",
+            "value": "InformatieObject",
+            "__typename": "Relation"
+        }
+    ],
+    "__typename": "Entity"
+}
