@@ -11,14 +11,16 @@ If you have problems because there is a warning that port 8051 is still in use, 
 
 import dash
 from dash import html
-import dash_bootstrap_components as dbc
 from src.layout import get_app_layout
 from src.callbacks import register_callbacks
 
 # choose your own theme here: https://bootswatch.com/default/
-app = dash.Dash(external_stylesheets=[dbc.themes.MINTY])
+app = dash.Dash(__name__)
 app.title = "Big Data Science final project"
-app.layout = html.Div(get_app_layout())
+
+app.index_string = get_app_layout()
+
+app.layout = html.Div()
 register_callbacks(app)
 
 
