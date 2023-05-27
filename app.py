@@ -1,31 +1,31 @@
 """
-Template for BDS Visualization Lab 2022. 
-Run with 
-$ python app.py
-
-and open http://127.0.0.1:8051/
-
-If you have problems because there is a warning that port 8051 is still in use, just change the port in run_server
-
+Usage of Flask to handle multiple pages with better layout than in Dash
 """
 
-import dash
-from dash import html
-from src.layout import get_app_layout
-from src.callbacks import register_callbacks
+from flask import Flask, render_template
 
-# choose your own theme here: https://bootswatch.com/default/
-app = dash.Dash(__name__)
-app.title = "Big Data Science final project"
-
-app.index_string = get_app_layout()
-
-app.layout = html.Div()
-register_callbacks(app)
+app = Flask(__name__, template_folder='templatesFiles', static_folder='staticFiles')
 
 
-if __name__ == "__main__":
-    app.run_server(
-        debug=True, port=8051, dev_tools_hot_reload=True, use_reloader=True
-    )
+@app.route('/')
+def home():
+    # Inject data into the HTML template
+    data = {
+        'title': 'Home Page',
+        'message': 'Welcome to the home page!',
+    }
+    return render_template('home.html', data=data)
 
+
+@app.route('/about')
+def about():
+    # Inject data into the HTML template
+    data = {
+        'title': 'About Page',
+        'message': 'This is the about page.',
+    }
+    return render_template('about.html', data=data)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
