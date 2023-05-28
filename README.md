@@ -54,7 +54,7 @@ You also need to add the following paths to your PATH variable:
 ### Image datasets
 For deployement reason, the objects' images used to render the application are not integrated inside the repository. Thus, we still need to realize those last steps to run the application as intended:
 
-    1. Download all the images-* folders from this link:(https://cloud.ilabt.imec.be/index.php/s/Tircbrpgoco5K8K)
+    1. Download all the images-* folders from this link: https://cloud.ilabt.imec.be/index.php/s/Tircbrpgoco5K8K
     
     2. Include the folders inside the ./staticFiles/img/ folder following the pattern:
         - Folder images-<name>.zip need to be unzip in ./staticFiles/img/<name>
