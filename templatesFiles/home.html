@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ data.title }}</title>
+    <link rel="stylesheet" href="/staticFiles/style.css">
+</head>
+<body>
+    <div class="tbg">
+          <div class="theader">
+            <i class="fa fa-cog" aria-hidden="true"></i>
+            <i class="fa fa-comments" aria-hidden="true"></i>
+            <div class="tlogo">
+              <img src="../staticFiles/img/logo.png" alt="Museum dating Logo" title="Museum dating Logo" />
+            </div>
+          </div>
+          <div class="tbgwrap">
+                  <div class="tphoto card" style="background-image: url({{data.cards_img[0]}}); background-size: cover; background-position: center;">
+                    <div class="tname">{{data.cards_name[0]}}, <span class="age">27</span></div>
+                    <div class="tinfo"><i class="fa fa-book" aria-hidden="true"> 0</i><i class="fa fa-users" aria-hidden="true"> 0</i></div>
+                  </div>
+
+                  <div class="tphoto card hidden" style="background-image: url({{data.cards_img[1]}}); background-size: cover; background-position: center;">
+                    <div class="tname">{{data.cards_name[1]}}, <span class="age">27</span></div>
+                    <div class="tinfo"><i class="fa fa-book" aria-hidden="true"> 0</i><i class="fa fa-users" aria-hidden="true"> 0</i></div>
+                  </div>
+
+                  <div class="tphoto card hidden" style="background-image: url({{data.cards_img[2]}}); background-size: cover; background-position: center;">
+                    <div class="tname">{{data.cards_name[2]}}, <span class="age">27</span></div>
+                    <div class="tinfo"><i class="fa fa-book" aria-hidden="true"> 0</i><i class="fa fa-users" aria-hidden="true"> 0</i></div>
+                  </div>
+
+              <div class="tcontrols">
+                <div id='refuseBtn' class="tno"><i class="fa fa-times" aria-hidden="true"></i></div>
+                <div id='infoBtn' class="ti"><i class="fa fa-info" aria-hidden="true"></i></div>
+                <div id='confirmBtn' class="tyes"><i class="fa fa-heart" aria-hidden="true"></i></div>
+              </div>
+          </div>
+        </div>
+    <div class="credit"><a href="http://themakery.jcink.net">Created by Buze and Khaled</a></div>
+    <script src='https://use.fontawesome.com/faffa271ef.js'></script>
+    <script src="/staticFiles/home.js"></script>
+</body>
+</html>
