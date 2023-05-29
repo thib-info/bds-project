@@ -40,6 +40,12 @@ def organizeInfo(content: dict) -> dict:
 def getCardInfo(file_path: str) -> dict:
     file_content = getFile(file_path)
 
-    file_info = organizeInfo(file_content)
+    # file_info = organizeInfo(file_content)
+
+    file_info = {
+        "name": "Thibault",
+        "description": "Yes that's me",
+        "Museum": "test",
+    }
 
     return file_info
