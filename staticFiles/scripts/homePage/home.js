@@ -3,6 +3,7 @@ function addBtnListeners(){
     let confirmBtn = document.getElementById('confirmBtn');
     let infoBtn = document.getElementById('infoBtn');
     let cancelBtn = document.getElementById('refuseBtn');
+    let goDetailsBtn = document.getElementById('goDetails');
 
     confirmBtn.addEventListener('click', async () => {
         let acceptedCard = document.getElementsByClassName('tphoto card current')[0];
@@ -17,6 +18,12 @@ function addBtnListeners(){
     cancelBtn.addEventListener('click', () => {
         hideCardInfo();
     });
+
+    goDetailsBtn.addEventListener('click', () => {
+        console.log("info");
+        window.location.href = "/about";
+    });
+
 }
 
 function animateCard(){
