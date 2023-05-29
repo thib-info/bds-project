@@ -1,31 +1,38 @@
-''' SPARK 1 '''
+import json
 from pyspark.sql import SparkSession
-from pyspark.sql.types import StructType, StructField, StringType, ArrayType, MapType
 from pyspark.sql.functions import col, regexp_replace
 
 spark = SparkSession.builder.getOrCreate()
 
 # Path to folder of json files
-folder_path = 'datasets\\collections\\alijn'
+# folder_path = 'datasets\collections\industrie\industriemuseum--V40002.json'
 
 # Define the schema for the JSON data
-schema = StructType([
-    StructField("id", StringType(), nullable=True),
+# schema = StructType([
+#     StructField("id", StringType(), nullable=True),
     
-    StructField("object_id", StringType(), nullable=True),
+#     StructField("object_id", StringType(), nullable=True),
     
-    StructField("title", ArrayType(
-        StructType([
-            StructField("value", StringType(), nullable=True),
-        ])
-    ), nullable=True),
+#     StructField("title", ArrayType(
+#         StructType([
+#             StructField("value", StringType(), nullable=True),
+#         ])
+#     ), nullable=True),
     
-    StructField("description", ArrayType(
-        StructType([
-            StructField("value", StringType(), nullable=True),
-        ])
-    ), nullable=True),
-])
+#     StructField("description", ArrayType(
+#         StructType([
+#             StructField("value", StringType(), nullable=True),
+#         ])
+#     ), nullable=True),
+    
+#     StructField("relations", ArrayType(
+#         StructType([
+#             StructField("label", StringType(), nullable=True),
+#             StructField("value", StringType(), nullable=True),
+#         ])
+#     ), nullable=True),
+# ])
+
 
 # For modifying schema per metadata
 # new_schema = StructType(schema.fields + [
@@ -33,61 +40,82 @@ schema = StructType([
 # ])
 
 
-df = spark.read.schema(schema).json(folder_path)
-df.printSchema()
+def add_to_dic(dic, label, value):
+    
+    if label in dic:
+        if value not in dic[label]:
+            dic[label] += [value]
+        
+    else:
+        dic[label] = [value]
+    
+    return dic
 
-df = df.withColumn('title', regexp_replace(col('title').cast('string'), r'[\[\]\{\}]', ''))
-df = df.withColumn('description', regexp_replace(col('description').cast('string'), r'[\[\]\{\}]', ''))
-# df.show(n=40, truncate=True)
+def extract_info(file_path):
+    
+    df = spark.read.json(file_path)
+    df = df.withColumn('title', regexp_replace(col('title').cast('string'), r'[\[\]\{\}]', ''))
+    df = df.withColumn('description', regexp_replace(col('description').cast('string'), r'[\[\]\{\}]', ''))
 
+    row = df.collect()[0].asDict()
+    dic = {}
 
+    for key in row:
+        
+        if key == 'title':
+            dic = add_to_dic(dic, 'Titel', row[key][17:])
+            
+        elif key == 'object_id':
+            dic = add_to_dic(dic, 'Object ID', row[key])
+            
+        elif key == 'description':
+            dic = add_to_dic(dic, 'Beschrijving', row[key][23:])
+            
+        elif key == 'metadataCollection':
+            
+            for metadata in row[key]:
+                
+                label = metadata[2]
+                value = metadata[1][0][4]
+                
+                if label == 'hoogte':
+                    dic = add_to_dic(dic, 'Hoogte', value)
+                    
+                elif label == 'breedte':
+                    dic = add_to_dic(dic, 'Breedte', value)
+                    
+                elif label == 'diepte':
+                    dic = add_to_dic(dic, 'Diepte', value)       
+                    
+        elif key == 'relations':
+            
+            for relation in row[key]:
+                
+                label = relation[2]
+                value = relation[4]
 
-# df.write.csv('filename.csv', header=True, mode='overwrite')
+                if label == 'MaterieelDing.beheerder':
+                    dic = add_to_dic(dic, 'Museumnaam', value) 
+                
+                elif (label == 'vervaardiger' and value != 'onbekend') or 'associatie.persoon' in label:
+                    dic = add_to_dic(dic, 'Gemaakt door', value) 
+                    
+                elif label == 'objectnaam':
+                    dic = add_to_dic(dic, 'Objectnaam', value) 
+                    
+                elif 'toegekendType' in label:
+                    dic = add_to_dic(dic, 'Toegekend type', value) 
+                    
+                elif label == 'materiaal':
+                    dic = add_to_dic(dic, 'Materialen', value) 
+                        
+                elif label == 'techniek':
+                    dic = add_to_dic(dic, 'Techniek', value)
+                    
+                elif 'onderwerp' in label:
+                    dic = add_to_dic(dic, 'Onderwerp', value) 
 
-
-''' PANDAS 1 '''
-import os
-import pandas as pd
-import json
-
-# Path to folder
-# folder_path = 'datasets\\collections\\design'
-
-# dfs = pd.DataFrame()
-
-# # Paths to nested json object
-# object_paths = [['title', 'value'], ['description', 'value']]
-# column_names = ['title', 'description']
-
-# for filename in os.listdir(folder_path):
-#     if filename.endswith('.json'):
-#         file_path = os.path.join(folder_path, filename)
-#         with open(file_path, 'r') as file:
-#             data = json.load(file)
-
-#         # Define a custom function to extract the specific objects
-#         def extract_objects(obj):
-#             if isinstance(obj, list):
-#                 results = {}
-#                 for item in obj:
-#                     if item['key'] in column_names:
-#                         results[item['key']] = item['value']
-#                 return results
-#             return None
-
-#         # Extract each object path separately
-#         dfs_path = []
-#         for path in object_paths:
-#             df = pd.json_normalize(data, record_path=path, meta=['id', 'object_id', 'type'], meta_prefix='meta')
-#             df[column_names] = df['meta'].apply(extract_objects).apply(pd.Series)
-#             dfs_path.append(df)
-
-#         # Concatenate the DataFrames for each path
-#         df_combined = pd.concat(dfs_path, ignore_index=True)
-#         dfs.append(df_combined)
-
-# combined_df = pd.concat(dfs, ignore_index=True)
-
-# combined_df.to_csv('filename.csv', index=False)
-
-# print(df["metadataCollection"][0])
+                elif 'periode' in label:
+                    dic = add_to_dic(dic, 'Periode', value) 
+         
+    return dic
