@@ -37,6 +37,7 @@ def get_folders_name(paths: list) -> list:
     folders_name = []
     for path in paths:
         folder = path.split('/')[3]
+        folder = folder.split('\\')[0]
         folders_name.append(folder)
 
     return folders_name

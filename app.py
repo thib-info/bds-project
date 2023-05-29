@@ -17,7 +17,6 @@ cards_bck = get_random_images(3)
 
 @app.route('/api/data')
 def get_data():
-    data_request["time"] = time.localtime()
     return data_request
 
 
@@ -27,7 +26,7 @@ def get_new_card():
     [new_card_id, new_card_name, new_card_path] = get_details_imgs(new_card_bck)
 
     html_content = generateCardHtml(new_card_id[0], new_card_name[0], new_card_path[0], new_card_bck[0])
-
+    print(html_content)
     data = {
         'request_type': 'newCard',
         'content': html_content
@@ -66,23 +65,16 @@ def process_card():
     data = request.json
 
     card_id = data.get('card_id')
-    accepted = data.get('accepted')
     file_path = data.get('file_path')
 
-    if accepted:
-        print(f"Card {card_id} has been accepted. With the path to the file: {file_path}")
-    else:
-        print(f"Card {card_id} has been rejected.")
-
-    """
     card_info = getCardInfo(file_path)
+
     data_request = {
         'request_type': 'cardInfo',
         'content': card_info
     }
-    """
 
-    return 'Success'
+    return data_request
 
 
 if __name__ == '__main__':
