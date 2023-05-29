@@ -83,7 +83,20 @@ def get_img_name(file_path: str) -> str:
     return name
 
 
-def get_names(paths: list) -> list:
+def get_img_id(file_path: str) -> str:
+    with open(file_path) as file:
+        data = json.load(file)
+
+    img_id = data["id"]
+
+    return img_id
+
+
+"""
+    Send back the following information
+    [[files_id], [files_name], [files_paths]]
+"""
+def get_details_imgs(paths: list) -> list:
 
     details = get_img_details(paths)
     files_path = []
@@ -92,7 +105,10 @@ def get_names(paths: list) -> list:
         files_path.append(get_image_file_path(detail))
 
     files_names = []
+    files_id = []
     for file_path in files_path:
         files_names.append(get_img_name(file_path))
+        files_id.append(get_img_id(file_path))
 
-    return files_names
+    return [files_id, files_names, files_path]
+

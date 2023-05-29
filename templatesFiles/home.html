@@ -5,7 +5,15 @@
     <link rel="stylesheet" href="/staticFiles/style.css">
 </head>
 <body>
-    <div class="tbg">
+    <p id="testFetch"> </p>
+    <div class="container">
+        <div class="card-info">
+            <h2 id="card-name"></h2>
+            <p id="card-age"></p>
+            <p id="card-info1"></p>
+            <p id="card-info2"></p>
+        </div>
+        <div class="tbg">
           <div class="theader">
             <i class="fa fa-cog" aria-hidden="true"></i>
             <i class="fa fa-comments" aria-hidden="true"></i>
@@ -14,17 +22,17 @@
             </div>
           </div>
           <div class="tbgwrap">
-                  <div class="tphoto card" style="background-image: url({{data.cards_img[0]}}); background-size: cover; background-position: center;">
+                  <div id="{{data.cards_id[0]}}" class="tphoto card current" file_path={{data.files_path[0]}} style="background-image: url({{data.cards_img[0]}}); background-size: cover; background-position: center;">
                     <div class="tname">{{data.cards_name[0]}}, <span class="age">27</span></div>
                     <div class="tinfo"><i class="fa fa-book" aria-hidden="true"> 0</i><i class="fa fa-users" aria-hidden="true"> 0</i></div>
                   </div>
 
-                  <div class="tphoto card hidden" style="background-image: url({{data.cards_img[1]}}); background-size: cover; background-position: center;">
+                  <div id="{{data.cards_id[1]}}" class="tphoto card hidden" file_path={{data.files_path[1]}} style="background-image: url({{data.cards_img[1]}}); background-size: cover; background-position: center;">
                     <div class="tname">{{data.cards_name[1]}}, <span class="age">27</span></div>
                     <div class="tinfo"><i class="fa fa-book" aria-hidden="true"> 0</i><i class="fa fa-users" aria-hidden="true"> 0</i></div>
                   </div>
 
-                  <div class="tphoto card hidden" style="background-image: url({{data.cards_img[2]}}); background-size: cover; background-position: center;">
+                  <div id="{{data.cards_id[2]}}" class="tphoto card hidden" file_path={{data.files_path[2]}} style="background-image: url({{data.cards_img[2]}}); background-size: cover; background-position: center;">
                     <div class="tname">{{data.cards_name[2]}}, <span class="age">27</span></div>
                     <div class="tinfo"><i class="fa fa-book" aria-hidden="true"> 0</i><i class="fa fa-users" aria-hidden="true"> 0</i></div>
                   </div>
@@ -36,6 +44,7 @@
               </div>
           </div>
         </div>
+    </div>
     <div class="credit"><a href="http://themakery.jcink.net">Created by Buze and Khaled</a></div>
     <script src='https://use.fontawesome.com/faffa271ef.js'></script>
     <script src="/staticFiles/home.js"></script>
