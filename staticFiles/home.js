@@ -3,12 +3,10 @@ function addBtnListeners(){
     let infoBtn = document.getElementById('infoBtn');
     let cancelBtn = document.getElementById('refuseBtn');
 
-    confirmBtn.addEventListener('click', () => {
+    confirmBtn.addEventListener('click', async () => {
         let acceptedCard = document.getElementsByClassName('tphoto card current')[0];
         let file_path = acceptedCard.getAttribute('file_path');
-        sendDataToServer(acceptedCard.id, true, file_path);
-        showCardInfo(acceptedCard.id);
-        fetchData();
+        await sendDataToServer(acceptedCard.id, file_path);
     });
 
     infoBtn.addEventListener('click', () => {
@@ -60,10 +58,13 @@ function getNextCard(currentCard) {
 
 // Update the card information based on the selected card
 function updateCardInfo(card) {
-  document.getElementById('card-name').textContent = card.name;
-  document.getElementById('card-age').textContent = card.age;
-  document.getElementById('card-info1').textContent = card.info1;
-  document.getElementById('card-info2').textContent = card.info2;
+    const container = document .getElementById('card-info-details');
+    container.innerHTML = "";
+    Object.keys(card).forEach((element) => {
+        const paragraph = document.createElement('p');
+        paragraph.textContent = element + " : " + card[element];
+        container.insertBefore(paragraph, container.firstChild);
+  });
 }
 
 function hideCardInfo(){
@@ -81,16 +82,9 @@ function hideCardInfo(){
   }
 }
 
-function showCardInfo(cardId){
-    const card = {
-    name: "{{data.cards_name[0]}}", // Replace with the appropriate data from the card
-    age: 27, // Replace with the appropriate data from the card
-    info1: 'Information 1', // Replace with the appropriate data from the card
-    info2: 'Information 2' // Replace with the appropriate data from the card
-  };
+function showCardInfo(details){
 
-  // Update the card information in the container
-  updateCardInfo(card);
+  updateCardInfo(details);
 
   setTimeout(function () {
     const cardInfo = document.querySelector('.card-info');
@@ -99,50 +93,47 @@ function showCardInfo(cardId){
 }
 
 
-function fetchData() {
-    fetch('/api/data')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            if(data.request_type === 'cardInfo')
-                console.log('okay card info');
-            document.getElementById('testFetch').innerText = data.time;
-        })
-        .catch(error => {
-            console.log('Error fetching data:', error);
-        });
+async function fetchData() {
+    const result = await fetch('/api/data')
+    try{
+        const data = await result.json();
+        console.log(data);
+    }catch (error){
+        console.log('Error fetching data:', error);
+    }
+
 }
 
-function sendDataToServer(cardId, accepted, file_path) {
+async function sendDataToServer(cardId, file_path) {
   // Create the data object to send
   const data = {
     card_id: cardId,
-    accepted: accepted,
     file_path: file_path
   };
 
   // Send the data to the server using fetch API
-  fetch('/details-card', {
+  const result = await fetch('/details-card', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)
-  })
-    .then(response => {
-      if (response.ok) {
-        console.log('Data sent successfully');
-      } else {
-        console.error('Failed to send data');
+  });
+
+  try{
+      if(result.ok){
+         console.log('Data sent successfully');
+         const data = await result.json();
+         showCardInfo(data.content);
+      }else{
+          console.error('Failed to send data');
       }
-    })
-    .catch(error => {
+  }catch(error){
       console.error('Error occurred while sending data:', error);
-    });
+  }
 }
 
 function main(){
-    fetchData();
     addBtnListeners();
     animateCard();
 }
