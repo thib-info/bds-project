@@ -17,6 +17,7 @@ function addBtnListeners(){
 
     cancelBtn.addEventListener('click', () => {
         hideCardInfo();
+        fetchNewCard();
     });
 }
 
@@ -40,8 +41,7 @@ function animateCard(){
       currentCard.classList.add('rejected');
 
       setTimeout(function() {
-        currentCard.classList.add('hidden');
-        currentCard.classList.remove('current');
+        currentCard.remove();
         nextCard.classList.remove('hidden');
         nextCard.classList.add('current');
       }, 500);
@@ -107,6 +107,21 @@ function fetchData() {
             if(data.request_type === 'cardInfo')
                 console.log('okay card info');
             document.getElementById('testFetch').innerText = data.time;
+        })
+        .catch(error => {
+            console.log('Error fetching data:', error);
+        });
+}
+
+function fetchNewCard() {
+    fetch('/api/getNewCard')
+        .then(response => response.json())
+        .then(data => {
+            if(data.request_type === 'newCard'){
+                let container = document.getElementById('card-container');
+                container.insertAdjacentHTML('beforeend', data.content);
+                animateCard();
+            }
         })
         .catch(error => {
             console.log('Error fetching data:', error);
