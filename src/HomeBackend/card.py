@@ -7,7 +7,7 @@ import random
     Pick 5 random images when the application is started
     The images are picked randomly in each folder of the ./img folder
 """
-def get_random_images() -> list:
+def get_random_images(nbr: int) -> list:
     folder_path = './staticFiles/img/'
     random_files = []
 
@@ -17,9 +17,11 @@ def get_random_images() -> list:
                 file_path = "." + os.path.join(root, file)
                 random_files.append(file_path)
 
-    random_files = random.sample(random_files, 5)
+    random_files = random.sample(random_files, nbr)
 
     return random_files
+
+
 
 
 def get_transcode(paths: list) -> list:
@@ -35,6 +37,7 @@ def get_folders_name(paths: list) -> list:
     folders_name = []
     for path in paths:
         folder = path.split('/')[3]
+        folder = folder.split('\\')[0]
         folders_name.append(folder)
 
     return folders_name
@@ -83,7 +86,20 @@ def get_img_name(file_path: str) -> str:
     return name
 
 
-def get_names(paths: list) -> list:
+def get_img_id(file_path: str) -> str:
+    with open(file_path) as file:
+        data = json.load(file)
+
+    img_id = data["id"]
+
+    return img_id
+
+
+"""
+    Send back the following information
+    [[files_id], [files_name], [files_paths]]
+"""
+def get_details_imgs(paths: list) -> list:
 
     details = get_img_details(paths)
     files_path = []
@@ -92,7 +108,20 @@ def get_names(paths: list) -> list:
         files_path.append(get_image_file_path(detail))
 
     files_names = []
+    files_id = []
     for file_path in files_path:
         files_names.append(get_img_name(file_path))
+        files_id.append(get_img_id(file_path))
 
-    return files_names
+    return [files_id, files_names, files_path]
+
+
+def generateCardHtml(card_id, card_name, card_path, card_bck) -> str:
+    html_content = f'''
+    <div id="{card_id}" class="tphoto card hidden" file_path={card_path} style="background-image: url({card_bck}); background-size: cover; background-position: center;">
+        <div class="tname">{card_name}, <span class="age">27</span></div>
+        <div class="tinfo"><i class="fa fa-book" aria-hidden="true"> 0</i><i class="fa fa-users" aria-hidden="true"> 0</i></div>
+    </div>
+    '''
+
+    return html_content

@@ -185,7 +185,7 @@ body {
 
 .tphoto.card {
   /* Other styles */
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, opacity 0.5s ease-in-out;
 }
 
 .tphoto.card.accepted {
@@ -195,6 +195,7 @@ body {
 .tphoto.card.rejected {
   animation: burn 0.5s linear;
   animation-fill-mode: forwards;
+  opacity: 0;
 }
 
 @keyframes burn {
@@ -220,4 +221,45 @@ body {
 
 .card-container .hidden {
   display: none;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.card-wrapper {
+  flex: 2;
+  position: relative;
+}
+
+.card-container {
+  position: relative;
+  width: 30%;
+  margin: auto;
+  height: 350px;
+}
+
+.card-container .tphoto {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card-info {
+  position: fixed;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  background-color: #f0f0f0;
+  padding: 20px;
+  z-index: 999;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.card-info.show {
+  opacity: 1;
 }
