@@ -7,7 +7,7 @@ import random
     Pick 5 random images when the application is started
     The images are picked randomly in each folder of the ./img folder
 """
-def get_random_images() -> list:
+def get_random_images(nbr: int) -> list:
     folder_path = './staticFiles/img/'
     random_files = []
 
@@ -17,9 +17,11 @@ def get_random_images() -> list:
                 file_path = "." + os.path.join(root, file)
                 random_files.append(file_path)
 
-    random_files = random.sample(random_files, 5)
+    random_files = random.sample(random_files, nbr)
 
     return random_files
+
+
 
 
 def get_transcode(paths: list) -> list:
@@ -113,3 +115,13 @@ def get_details_imgs(paths: list) -> list:
 
     return [files_id, files_names, files_path]
 
+
+def generateCardHtml(card_id, card_name, card_path, card_bck) -> str:
+    html_content = f'''
+    <div id="{card_id}" class="tphoto card hidden" file_path={card_path} style="background-image: url({card_bck}); background-size: cover; background-position: center;">
+        <div class="tname">{card_name}, <span class="age">27</span></div>
+        <div class="tinfo"><i class="fa fa-book" aria-hidden="true"> 0</i><i class="fa fa-users" aria-hidden="true"> 0</i></div>
+    </div>
+    '''
+
+    return html_content

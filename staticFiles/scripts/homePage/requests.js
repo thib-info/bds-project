@@ -38,3 +38,18 @@ async function sendDataToServer(cardId, file_path) {
       console.error('Error occurred while sending data:', error);
   }
 }
+
+async function fetchNewCard() {
+    const result = await fetch('/api/getNewCard');
+    try{
+        const data = await result.json();
+        console.log(data);
+        if(data.request_type === 'newCard'){
+            console.log("test");
+            let container = document.getElementById('card-container');
+            container.insertAdjacentHTML('beforeend', data.content);
+        }
+    }catch(error){
+        console.log('Error fetching data:', error);
+    }
+}

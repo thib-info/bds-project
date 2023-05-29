@@ -15,8 +15,10 @@ function addBtnListeners(){
         console.log("info");
     });
 
-    cancelBtn.addEventListener('click', () => {
+    cancelBtn.addEventListener('click', async() => {
         hideCardInfo();
+        await fetchNewCard();
+        animateCard();
     });
 
     goDetailsBtn.addEventListener('click', () => {
@@ -46,8 +48,7 @@ function animateCard(){
       currentCard.classList.add('rejected');
 
       setTimeout(function() {
-        currentCard.classList.add('hidden');
-        currentCard.classList.remove('current');
+        currentCard.remove();
         nextCard.classList.remove('hidden');
         nextCard.classList.add('current');
       }, 500);
@@ -98,7 +99,6 @@ function showCardInfo(details){
     cardInfo.classList.add('show');
   }, 300);
 }
-
 
 function main(){
     addBtnListeners();
