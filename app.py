@@ -10,6 +10,7 @@ from src.HomeBackend.getCardInfo import getCardInfo
 app = Flask(__name__, template_folder='templatesFiles', static_folder='staticFiles')
 
 data_request = {'request_type': 'None'}
+select_card = {}
 
 cards_bck = get_random_images(3)
 [cards_id, cards_name, files_path] = get_details_imgs(cards_bck)
@@ -59,13 +60,26 @@ def about():
     return render_template('about.html', data=data)
 
 
+@app.route('/selectedCard')
+def selectedCard():
+    global select_card
+
+    data = {
+        'path': select_card['image_path'],
+    }
+    return render_template('selectedCard.html', data=data)
+
+
 @app.route('/details-card', methods=['POST'])
 def process_card():
     global data_request
+    global select_card
+
     data = request.json
 
     card_id = data.get('card_id')
     file_path = data.get('file_path')
+    image_path = data.get('image_path')
 
     card_info = getCardInfo(file_path)
 
@@ -73,6 +87,11 @@ def process_card():
         'request_type': 'cardInfo',
         'content': card_info
     }
+
+    select_card['path'] = file_path
+    select_card['id'] = card_id
+    select_card['details'] = card_info
+    select_card['image_path'] = image_path
 
     return data_request
 

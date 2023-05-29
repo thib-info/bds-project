@@ -10,11 +10,12 @@ async function fetchData() {
 
 }
 
-async function sendDataToServer(cardId, file_path) {
+async function sendDataToServer(cardId, file_path, image_path) {
   // Create the data object to send
   const data = {
     card_id: cardId,
-    file_path: file_path
+    file_path: file_path,
+    image_path: image_path
   };
 
   // Send the data to the server using fetch API
