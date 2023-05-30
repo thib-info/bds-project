@@ -22,6 +22,47 @@ def get_random_images(nbr: int) -> list:
     return random_files
 
 
+def get_random_files(nbr: int) -> list:
+    folder_path = './datasets/collections/'
+    random_files = []
+
+    for root, dirs, files in os.walk(folder_path):
+        for file in files:
+            if root != folder_path:
+                file_path = os.path.join(root, file)
+                random_files.append(file_path)
+
+    random_files = random.sample(random_files, nbr)
+
+    return random_files
+
+
+def get_image_path(files_path: list) -> list:
+    img_paths = []
+    folders = get_folders_name(files_path)
+    ind = 0
+
+    for file_path in files_path:
+        with open(file_path) as file:
+            data = json.load(file)
+
+        img_name = data['mediafiles'][0]['transcode_filename']
+        img_path = "../staticFiles/img/" + folders[ind] + '/' + img_name
+        img_paths.append(img_path)
+        ind += 1
+
+    return img_paths
+
+
+def get_file_common_info(files_path: list) -> list:
+    files_name = []
+    files_id = []
+
+    for file_path in files_path:
+        files_name.append(get_img_name(file_path))
+        files_id.append(get_img_id(file_path))
+
+    return [files_id, files_name]
 
 
 def get_transcode(paths: list) -> list:
