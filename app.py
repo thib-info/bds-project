@@ -18,13 +18,12 @@ files_path = []
 cards_id = []
 cards_name = []
 cards_bck = []
-while correct is False and ind < 3:
+while ind < 3:
     file_path = get_random_files(1)
     [card_id, card_name] = get_file_common_info(file_path)
     card_bck = get_image_path(file_path)
 
     if not os.path.exists(card_bck[0][1:]):
-        correct = False
         continue
 
     files_path.append(file_path[0])
@@ -33,10 +32,10 @@ while correct is False and ind < 3:
     cards_bck.append(card_bck[0])
 
     ind += 1
-    correct = True
 
 for file in files_path:
     cards_info[file] = extract_info(file)
+
 
 @app.route('/api/data')
 def get_data():
