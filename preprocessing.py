@@ -8,42 +8,39 @@ from pyspark.sql.types import StringType, StructField, StructType
 
 spark = SparkSession.builder.getOrCreate()
 
-folder_path = 'datasets\\collections\\'
 
 # Define the schema for the JSON data
-schema = StructType([
-    StructField("id", StringType(), nullable=True),
-    
-    StructField("object_id", StringType(), nullable=True),
+# schema = StructType([
+#     StructField("id", StringType(), nullable=True),
 
-    # StructField("object_id", StringType(), nullable=True),
+#     StructField("object_id", StringType(), nullable=True),
 
-    # StructField("title", ArrayType(
-    #     StructType([
-    #         StructField("value", StringType(), nullable=True),
-    #     ])
-    # ), nullable=True),
+# StructField("object_id", StringType(), nullable=True),
 
-    # StructField("description", ArrayType(
-    #     StructType([
-    #         StructField("value", StringType(), nullable=True),
-    #     ])
-    # ), nullable=True),
+# StructField("title", ArrayType(
+#     StructType([
+#         StructField("value", StringType(), nullable=True),
+#     ])
+# ), nullable=True),
 
-    # StructField("relations", ArrayType(
-    #     StructType([
-    #         StructField("label", StringType(), nullable=True),
-    #         StructField("value", StringType(), nullable=True),
-    #     ])
-    # ), nullable=True),
-])
+# StructField("description", ArrayType(
+#     StructType([
+#         StructField("value", StringType(), nullable=True),
+#     ])
+# ), nullable=True),
 
+# StructField("relations", ArrayType(
+#     StructType([
+#         StructField("label", StringType(), nullable=True),
+#         StructField("value", StringType(), nullable=True),
+#     ])
+# ), nullable=True),
+# ])
 
 # For modifying schema per metadata
 # new_schema = StructType(schema.fields + [
 #     StructField("metadata.value", StringType(), nullable=True),
 # ])
-
 
 
 def add_to_dic(dic, label, value):
@@ -130,26 +127,19 @@ def extract_info(file_path):
     return dic
 
 
-print('\n\n\n---------------------------------------------------')
-print('-----------------BEGIN DEBUGGING-------------------')
-print('---------------------------------------------------\n\n\n')
-
-
-
 def find_matches(file_path, museum):
-    
+
     df = spark.read.json(file_path)
-    row = df.collect()[0].asDict()    
-    
+    row = df.collect()[0].asDict()
+
     relations = row['relations']
     keys = []
 
     for relation in relations:
         keys += [relation[1]]
-    
-    
+
     folder_path = 'datasets\\collections\\' + museum
-    
+
     df = spark.read.json(folder_path)
 
     museum_relations = df.select(['relations', 'object_id']).na.drop()
@@ -158,17 +148,17 @@ def find_matches(file_path, museum):
     scores = {}
 
     for i in range(len(museum_relations)):
-        
+
         keys_to_match = []
-        
+
         for relation in museum_relations[i][0]:
             keys_to_match += [relation[1]]
-                
+
         similarity = get_similarity(keys, keys_to_match)
-        
+
         if similarity > 0:
-            scores[museum_relations[i][1]] = get_similarity(keys, keys_to_match)
-        
+            scores[museum_relations[i][1]] = get_similarity(
+                keys, keys_to_match)
 
     matches = sorted(scores, key=scores.get, reverse=True)[1:6]
 
@@ -177,14 +167,14 @@ def find_matches(file_path, museum):
 
 
 def get_similarity(keys, keys_to_match):
-    
+
     found = 0
-    
+
     for key in keys:
         if key in keys_to_match:
             found += 1
-    
+
     return found
-    
+
 
 find_matches('datasets\collections\stam\stam--S.0180.json', 'stam')
