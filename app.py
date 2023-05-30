@@ -2,18 +2,42 @@
 Usage of Flask to handle multiple pages with better layout than in Dash
 """
 import time
-
+import os
 from flask import Flask, render_template, request
-from src.HomeBackend.card import get_random_images, get_details_imgs, generateCardHtml
-from src.HomeBackend.getCardInfo import getCardInfo
+from src.HomeBackend.card import generateCardHtml, get_random_files, get_image_path, get_file_common_info
+from src.HomeBackend.preprocessing import extract_info
 
 app = Flask(__name__, template_folder='templatesFiles', static_folder='staticFiles')
 
 data_request = {'request_type': 'None'}
 select_card = {}
+cards_info = {}
 
-cards_bck = get_random_images(3)
-[cards_id, cards_name, files_path] = get_details_imgs(cards_bck)
+correct = False
+ind = 0
+files_path = []
+cards_id = []
+cards_name = []
+cards_bck = []
+while correct is False and ind < 3:
+    file_path = get_random_files(1)
+    [card_id, card_name] = get_file_common_info(file_path)
+    card_bck = get_image_path(file_path)
+
+    if not os.path.exists(card_bck[0][1:]):
+        correct = False
+        continue
+
+    files_path.append(file_path[0])
+    cards_id.append(card_id[0])
+    cards_name.append(card_name[0])
+    cards_bck.append(card_bck[0])
+
+    ind += 1
+    correct = True
+
+for file in files_path:
+    cards_info[file] = extract_info(file)
 
 
 @app.route('/api/data')
@@ -23,15 +47,31 @@ def get_data():
 
 @app.route('/api/getNewCard')
 def get_new_card():
-    new_card_bck = get_random_images(1)
-    [new_card_id, new_card_name, new_card_path] = get_details_imgs(new_card_bck)
+    done = False
+    global cards_info
+    while(done == False):
+        try:
+            new_card_path = get_random_files(1)
+            [new_card_id, new_card_name] = get_file_common_info(new_card_path)
+            new_card_bck = get_image_path(new_card_path)
+            path_to_check = new_card_bck[0][1:]
 
-    html_content = generateCardHtml(new_card_id[0], new_card_name[0], new_card_path[0], new_card_bck[0])
-    print(html_content)
-    data = {
-        'request_type': 'newCard',
-        'content': html_content
-    }
+            if not os.path.exists(path_to_check):
+                continue
+
+            html_content = generateCardHtml(new_card_id[0], new_card_name[0], new_card_path[0], new_card_bck[0])
+            data = {
+                'request_type': 'newCard',
+                'content': html_content
+            }
+
+            details = extract_info(new_card_path[0])
+            cards_info[new_card_path[0]] = details
+
+            done = True
+        except Exception as e:
+            print(e)
+            done = False
 
     return data
 
@@ -72,24 +112,23 @@ def selectedCard():
 
 @app.route('/details-card', methods=['POST'])
 def process_card():
-    global data_request
-    global select_card
+    global data_request, cards_info, select_card
 
     data = request.json
 
-    card_id = data.get('card_id')
-    file_path = data.get('file_path')
+    card_id_get = data.get('card_id')
+    file_path_get = data.get('file_path')
     image_path = data.get('image_path')
 
-    card_info = getCardInfo(file_path)
+    card_info = cards_info[file_path_get]
 
     data_request = {
         'request_type': 'cardInfo',
         'content': card_info
     }
 
-    select_card['path'] = file_path
-    select_card['id'] = card_id
+    select_card['path'] = file_path_get
+    select_card['id'] = card_id_get
     select_card['details'] = card_info
     select_card['image_path'] = image_path
 
