@@ -249,15 +249,19 @@ body {
 }
 
 .card-info {
-  position: fixed;
-  top: 50%;
-  left: 25%;
+  position: absolute;
+  top: 45%;
+  left: 27%;
   transform: translate(-50%, -50%);
   opacity: 0;
   background-color: #f0f0f0;
   padding: 20px;
   z-index: 999;
   transition: opacity 0.3s ease-in-out;
+  width: 500px;
+  height: 300px;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .card-info.show {

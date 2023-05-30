@@ -51,6 +51,7 @@ def add_to_dic(dic, label, value):
     
     return dic
 
+
 def extract_info(file_path):
     
     df = spark.read.json(file_path)
