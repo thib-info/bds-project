@@ -1,7 +1,7 @@
 
 # Museum Dating
 
-Our application intends to propose cultural dates that you can enjoy in solo or with whoever . Based on the layout of Tinder, this time you're not matching with somebody but with something. This thing is the exhibited item that you'll visit inside one of the museums in the city of Ghent.
+Our application intends to propose cultural dates that you can enjoy in solo, or even share them with whoever you would like! Based on the layout of Tinder, this time you're not matching with somebody but with something. This thing is the exhibited item that you'll visit inside one of the museums in the city of Ghent.
 
 
 ## Installation
@@ -22,7 +22,7 @@ Download and unzip Apache Spark version 3.3.2, pre-built for hadoop version 2.7 
 
 Configure new environment variable:
 ```
-SPARK_HOME -> C:\$path_to_folder\spark\spark-3.3.1-bin-hadoop2
+SPARK_HOME -> C:\$path_to_folder\spark\spark-3.3.2-bin-hadoop2
 ```
 #### Java
 Download and install JDK using this [link](https://www.oracle.com/in/java/technologies/downloads/#jdk20-windows)
@@ -79,5 +79,5 @@ So if each step were followed, we should have 5 folders nested in ./staticFiles/
 
 
 ## Authors
-
+- [@ItsKhaled](https://www.github.com/ItsKhaled)
 - [@thib-info](https://www.github.com/thib-info)
