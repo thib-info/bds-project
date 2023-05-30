@@ -145,7 +145,12 @@ def find_matches(file_path, museum):
         keys += [relation[1]]
 
     ''' Read the dataset of the museum coresponding to the item '''
-    folder_path = '..\\..\\datasets\\collections\\' + museum
+    # Define the folder path
+    folder_path = os.path.join('datasets', 'collections', museum)
+
+    # Replace backslashes with forward slashes if running on non-Windows systems
+    if not os.name == 'nt':
+        folder_path = folder_path.replace('\\', '/')
     df = spark.read.json(folder_path)
 
     museum_relations = df.select(['relations', 'object_id']).na.drop()
