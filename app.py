@@ -9,10 +9,15 @@ from src.HomeBackend.preprocessing import extract_info, find_matches
 
 app = Flask(__name__, template_folder='templatesFiles', static_folder='staticFiles')
 
-data_request = {'request_type': 'None'}
 select_card = {}
 cards_info = {}
 select_card_mapping = {}
+data_request = {
+    'request_type': 'None',
+    'select_card': select_card,
+    'cards_info': cards_info,
+    'select_card_mapping': select_card_mapping
+}
 
 correct = False
 ind = 0
