@@ -24,14 +24,18 @@ function addLoaderListener() {
 
 async function fetchTheInitData(){
     await getDetails();
-    // await getSuggestions()
+    await getSuggestions()
 }
 
 async function getSuggestions(){
     const dict_suggestions = await fetchSuggestions();
     const file_path = getFilePath();
+    console.log(dict_suggestions);
     const suggestions_paths = dict_suggestions[file_path]['files_path'];
     const suggestions_img = dict_suggestions[file_path]['images_path'];
+    const suggestions_details = dict_suggestions[file_path]['details'];
+
+    console.log(suggestions_details);
 
     addSuggestionCard(suggestions_img);
     addArrowListener();
@@ -270,6 +274,7 @@ async function main(){
     addLoaderListener();
     await fetchTheInitData();
     const reco = (await fetchReco())[museum];
+    console.log(reco);
     data = reco;
     addPlaces(reco);
     addPlacesListeners();

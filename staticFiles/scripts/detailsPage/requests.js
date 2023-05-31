@@ -42,6 +42,7 @@ async function fetchReco(){
     try{
         const data = await result.json();
         console.log(data);
+        console.log('test');
         return data.cards_reco;
     }catch (error){
         console.log('Error fetching data:', error);

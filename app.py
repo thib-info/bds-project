@@ -47,20 +47,25 @@ while ind < 3:
 for file in files_path:
     cards_info[file] = extract_info(file)
 
-print("start")
-museum = files_path[0].split('/')[3]
-test = recommended_places(museum)
-cards_reco[museum] = test
-print(test)
-
-# Will be uncommented for the final version but takes time to init to skip it for the debug dev.
-"""
     if os.name == "nt":
         museum = (files_path[0].split('/')[3]).split('\\')[0]
     else:
         museum = files_path[0].split('/')[3]
-    cards_mapping[file] = find_matches(file, museum)
-"""
+
+    if museum not in cards_reco:
+        print('add-reco')
+        cards_reco[museum] = recommended_places(museum)
+
+    mappings = find_matches(file, museum)
+    cards_mapping[file] = mappings
+    cards_suggestion_img = get_image_path(mappings, museum)
+    details = get_file_common_info(mappings)
+
+    cards_mapping[file] = {
+        'files_path': mappings,
+        'images_path': cards_suggestion_img,
+        'details': details,
+    }
 
 
 @app.route('/api/data')
@@ -114,9 +119,12 @@ def getSuggestions():
     if card_path not in cards_mapping:
         mappings = find_matches(card_path, museum_name)
         cards_suggestion_img = get_image_path(mappings, museum_name)
+        details = get_file_common_info(mappings)
+
         cards_mapping[card_path] = {
             'files_path': mappings,
-            'images_path': cards_suggestion_img
+            'images_path': cards_suggestion_img,
+            'details': details,
         }
 
     return 'Success'
