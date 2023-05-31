@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/staticFiles/styles/style.css">
     <link rel="stylesheet" href="/staticFiles/styles/details.css">
     <script src="https://kit.fontawesome.com/e0f83b761c.js" crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmx0c-Oqr8XPUVYpO63tJ8eLe9AV-8a6w&callback=initMap" async defer></script>
 </head>
 <body>
     <div id="loading-screen">
@@ -37,8 +38,26 @@
         </div>
         <div class="container-details-right">
             <h2 class="title-date">Organize my date</h2>
-            <div class="container-date-ideas"></div>
-            <div class="container-map"></div>
+            <div class="rectangle-container">
+              <div class="rectangle-legends">
+                <span class="legend" style="margin-left: 6%;">Name</span>
+                <span class="legend">Type</span>
+                <span class="legend" style="margin-right: 3%;">Location</span>
+              </div>
+              <div class="selectable-items">
+                <div class="selectable-item">
+                  <span class="name">Place Name 1</span>
+                  <span class="type">Type 1</span>
+                  <span class="location">Location 1</span>
+                </div>
+                <div class="selectable-item">
+                  <span class="name">Place Name 2</span>
+                  <span class="type">Type 2</span>
+                  <span class="location">Location 2</span>
+                </div>
+              </div>
+            </div>
+            <div id="map"></div>
         </div>
     </div>
     <script src="/staticFiles/scripts/detailsPage/requests.js"></script>

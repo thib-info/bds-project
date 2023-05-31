@@ -1,3 +1,7 @@
+let map;
+let data;
+let init_coordinates = {lat: 0, lon: 0};
+
 function getImgPath(){
     let img = document.getElementById('object-selected-image');
     return img.getAttribute('src');
@@ -19,7 +23,7 @@ function addLoaderListener() {
 
 async function fetchTheInitData(){
     await getDetails();
-    await getSuggestions()
+    // await getSuggestions()
 }
 
 async function getSuggestions(){
@@ -102,9 +106,144 @@ async function getDetails() {
   }
 }
 
+function addPlacesListeners(){
+    const selectableItems = document.querySelectorAll('.selectable-item');
+
+    selectableItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('selected');
+
+        if (item.classList.contains('selected')) {
+            addPlaceToMap(item);
+          console.log('Selected:', item.textContent);
+        } else {
+          console.log('Deselected:', item.textContent);
+        }
+      });
+    });
+}
+
+function addPlaces(data) {
+  const container = document.querySelector('.selectable-items');
+  let index = 0;
+  data.forEach(item => {
+    const amenity = item['Amenity'][0];
+    const name = item['Name'][0];
+    const coordinates = item['Coordinates'];
+    const address = item['Address'];
+
+    const selectableItem = document.createElement('div');
+    selectableItem.classList.add('selectable-item');
+    selectableItem.setAttribute('index', index);
+
+    const typeElement = document.createElement('span');
+    typeElement.textContent = amenity;
+    typeElement.classList.add('type');
+
+    const nameElement = document.createElement('span');
+    nameElement.textContent = name;
+    nameElement.classList.add('name');
+
+    const locationElement = document.createElement('span');
+    locationElement.textContent = address;
+    locationElement.classList.add('location');
+
+    selectableItem.appendChild(nameElement);
+    selectableItem.appendChild(typeElement);
+    selectableItem.appendChild(locationElement);
+
+    container.appendChild(selectableItem);
+    index += 1;
+  });
+}
+
+function initMap() {
+    getInitCoordinates();
+    const mapOptions = {
+      center: { lat: init_coordinates.lat, lng: init_coordinates.lon },
+      zoom: 17
+    };
+
+    map = new google.maps.Map(document.getElementById('map'), mapOptions );
+}
+
+function addPlaceToMap(item) {
+  const index = item.getAttribute('index');
+  const place = data[index];
+  const coordinates = place['Coordinates'];
+  const position = { lat: parseFloat(coordinates.latitude), lng: parseFloat(coordinates.longitude) };
+  const customData = {};
+
+  Object.keys(place).forEach((key) => {
+    if(Array.isArray(place[key]) === true)
+        customData[key] = place[key];
+  });
+
+  let marker = new google.maps.Marker({
+      position,
+      map,
+      title: place.Name[0],
+      label: {
+        text: "A",
+        color: "#ffffff",
+      },
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 10,
+        fillColor: "#ff0000",
+        fillOpacity: 1,
+        strokeWeight: 2,
+        strokeColor: "#ffffff",
+      },
+      customData
+  });
+
+    const infoWindow = new google.maps.InfoWindow();
+    marker.addListener('click', function() {
+      let content = `<div> <h1>${marker.customData['Name']}</h1>`;
+      Object.keys(marker.customData).forEach((key) => {
+          if(key !== "Name")
+            content += `<p>${key}: ${marker.customData[key]}</p>`;
+      });
+      content += '</div>';
+
+      // Set the info window content
+      infoWindow.setContent(content);
+
+      // Open the info window
+      infoWindow.open(map, marker);
+    });
+}
+
+function getMuseum(){
+    let img = getImgPath();
+    return img.split('/')[3];
+}
+
+function getInitCoordinates(){
+    let museum = getMuseum();
+    if(museum === 'alijn'){
+        init_coordinates = {lat: 51.05755362299733, lon: 3.723522739298267};
+    }else if(museum === 'archief'){
+        init_coordinates = {lat: 51.04584607079588, lon: 3.7505423487840495};
+    }else if(museum === 'design'){
+        init_coordinates = {lat: 51.05590007151709, lon: 3.719668184088063};
+    }else if(museum === 'industrie'){
+        init_coordinates = {lat: 51.059572076526635, lon: 3.729351512923772};
+    }else if(museum === 'stam'){
+        init_coordinates = {lat: 51.04408963545599, lon: 3.7175096975808697};
+    }
+}
+
 async function main(){
+    let sample = [ {'Amenity': ['pub'], 'Name': ['The Celtic Towers'], 'Address': 'Sint-Michielshelling 5/6, 9000 Gent', 'Coordinates': {'latitude': 51.0537928, 'longitude': 3.721227}},
+
+{'Amenity': ['cinema'], 'Name': ['Sphinx'], 'Address': 'Sint-Michielshelling 7, 9000 Gent', 'Coordinates': {'latitude': 51.0537291, 'longitude': 3.7215956}, 'Phone number': ['+32 9 225 60 86'], 'Website': ['https://www.sphinx-cinema.be/'], 'Wheelchair': ['no'], 'Payment': ['yes']} ];
+    data = sample
     addLoaderListener();
     await fetchTheInitData();
+    addPlaces(sample);
+    addPlacesListeners();
 }
 
 main().then(r => {});
