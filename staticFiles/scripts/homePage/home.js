@@ -3,38 +3,44 @@ function addBtnListeners(){
     let confirmBtn = document.getElementById('confirmBtn');
     let infoBtn = document.getElementById('infoBtn');
     let cancelBtn = document.getElementById('refuseBtn');
-    let goDetailsBtn = document.getElementById('goDetails');
 
-    confirmBtn.addEventListener('click', async () => {
+    infoBtn.addEventListener('click', async () => {
         let acceptedCard = document.getElementsByClassName('tphoto card current')[0];
         let file_path = acceptedCard.getAttribute('file_path');
         let image_path = acceptedCard.getAttribute('style').split('url(')[1].split(')')[0];
         await sendDataToServer(acceptedCard.id, file_path, image_path);
         calculateSuggestions(file_path).then(r => {});
+        activateSelect();
     });
 
-    infoBtn.addEventListener('click', () => {
-        console.log("info");
+    confirmBtn.addEventListener('click', () => {
+        window.location.href = "/selectedCard";
     });
 
     cancelBtn.addEventListener('click', async() => {
+        disableSelect();
         hideCardInfo();
         await fetchNewCard();
         animateCard();
     });
 
-    goDetailsBtn.addEventListener('click', () => {
-        console.log("info");
-        window.location.href = "/selectedCard";
-    });
+}
 
+function activateSelect(){
+    let confirmBtn = document.getElementById('confirmBtn');
+    confirmBtn.classList.remove('hidden');
+}
+
+function disableSelect(){
+    let confirmBtn = document.getElementById('confirmBtn');
+    confirmBtn.classList.add('hidden');
 }
 
 function animateCard(){
     const cards = Array.from(document.getElementsByClassName('tphoto card'));
 
     cards.forEach(function(card) {
-        document.getElementById('confirmBtn').addEventListener('click', () => {
+        document.getElementById('infoBtn').addEventListener('click', () => {
             const currentCard = card;
             if(!card.classList.contains('hidden')) {
                 getNextCard(currentCard);
@@ -73,7 +79,7 @@ function updateCardInfo(card) {
     container.innerHTML = "";
     Object.keys(card).forEach((element) => {
         const paragraph = document.createElement('p');
-        paragraph.textContent = element + " : " + card[element];
+        paragraph.textContent = element + ": " + card[element];
         container.insertBefore(paragraph, container.firstChild);
   });
 }

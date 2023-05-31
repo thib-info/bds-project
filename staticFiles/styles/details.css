@@ -16,7 +16,7 @@
   justify-content: center;
   align-items: center;
   height: 300px;
-  margin: auto auto 1%;
+  margin: 2% auto 1%;
 }
 
 .object-image img {
@@ -25,10 +25,8 @@
 }
 
 .container-details {
-    width: 80%;
+    width: 100%;
     margin: auto;
-    padding: 2%;
-    background-color: sandybrown;
     color: black;
 }
 
@@ -42,14 +40,8 @@
 .container-card-suggestion {
     display: flex;
     width: 100%;
-    height: 25%;
+    height: 100%;
     align-content: space-between;
-}
-
-.card-suggestion {
-    width: 25%;
-    height: 100px;
-    background-color: aquamarine;
 }
 
 .container-date-ideas {
@@ -107,4 +99,62 @@ body {
     margin: 5% auto;
     padding: 2%;
     border: 1px solid #ccc;
+}
+
+.container-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.card {
+  width: 80%;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.column {
+  flex: 1;
+}
+
+.columns-wrapper {
+  display: flex;
+}
+
+.column p {
+  margin-bottom: 10px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.container-card-suggestion {
+  position: relative;
+  overflow: hidden;
+}
+
+.cards-container {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card-suggest {
+  width: 300px;
+  height: 200px;
+  margin: 2%;
+    background-size: cover;
+
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 40px;
 }

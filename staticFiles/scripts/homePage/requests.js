@@ -1,15 +1,4 @@
 
-async function fetchData() {
-    const result = await fetch('/api/data')
-    try{
-        const data = await result.json();
-        console.log(data);
-    }catch (error){
-        console.log('Error fetching data:', error);
-    }
-
-}
-
 async function sendDataToServer(cardId, file_path, image_path) {
   // Create the data object to send
   const data = {

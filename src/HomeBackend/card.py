@@ -37,11 +37,16 @@ def get_random_files(nbr: int) -> list:
     return random_files
 
 
-def get_image_path(files_path: list) -> list:
+def get_image_path(files_path: list, museum='') -> list:
     img_paths = []
-    folders = get_folders_name(files_path)
-    ind = 0
+    folders = []
+    if museum == '':
+        folders = get_folders_name(files_path)
+    else:
+        for file in files_path:
+            folders.append(museum)
 
+    ind = 0
     for file_path in files_path:
         with open(file_path) as file:
             data = json.load(file)

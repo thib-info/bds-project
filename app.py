@@ -10,10 +10,15 @@ from src.HomeBackend.relationMapping import find_matches
 
 app = Flask(__name__, template_folder='templatesFiles', static_folder='staticFiles')
 
-data_request = {'request_type': 'None'}
+data_request = {}
 select_card = {}
 cards_info = {}
 cards_mapping = {}
+global_data = {
+    'select_card': select_card,
+    'cards_info': cards_info,
+    'select_card_mapping': cards_mapping
+}
 
 correct = False
 ind = 0
@@ -36,10 +41,11 @@ while ind < 3:
 
     ind += 1
 
-# Will be uncomment for the final version but takes time to init to skip it for the debug dev.
-"""
 for file in files_path:
     cards_info[file] = extract_info(file)
+
+# Will be uncomment for the final version but takes time to init to skip it for the debug dev.
+"""
     if os.name == "nt":
         museum = (files_path[0].split('/')[3]).split('\\')[0]
     else:
@@ -49,7 +55,7 @@ for file in files_path:
 
 @app.route('/api/data')
 def get_data():
-    return data_request
+    return global_data
 
 
 @app.route('/api/getNewCard')
@@ -97,7 +103,11 @@ def getSuggestions():
 
     if card_path not in cards_mapping:
         mappings = find_matches(card_path, museum_name)
-        cards_mapping[card_path] = mappings
+        cards_suggestion_img = get_image_path(mappings, museum_name)
+        cards_mapping[card_path] = {
+            'files_path': mappings,
+            'images_path': cards_suggestion_img
+        }
 
     return 'Success'
 
@@ -131,6 +141,7 @@ def selectedCard():
 
     data = {
         'path': select_card['image_path'],
+        'file_path': select_card['path']
     }
     return render_template('selectedCard.html', data=data)
 
@@ -141,7 +152,6 @@ def process_card():
 
     data = request.json
 
-    card_id_get = data.get('card_id')
     file_path_get = data.get('file_path')
     image_path = data.get('image_path')
 
@@ -153,7 +163,6 @@ def process_card():
     }
 
     select_card['path'] = file_path_get
-    select_card['id'] = card_id_get
     select_card['details'] = card_info
     select_card['image_path'] = image_path
 
