@@ -137,11 +137,7 @@ def get_details(row):
 
     return dic
 
-print('\n\n\n\n---------------------------------------------')
-print("''''''''''''''''''''DEBUG''''''''''''''''''''")
-print('---------------------------------------------\n\n\n\n')
-
-
+''' Recommend places based on museum '''
 def recommended_places(museum):
     
     df = pd.read_json('..\..\datasets\POI\pois.json')
