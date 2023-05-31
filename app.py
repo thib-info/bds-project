@@ -41,7 +41,7 @@ for file in files_path:
 
 print(files_path[0].split('/')[3])
 if os.name == "nt":
-    museum = (files_path[0].split('/')[3]).split('')[0]
+    museum = (files_path[0].split('/')[3]).split('\\')[0]
 else:
     museum = files_path[0].split('/')[3]
 result = find_matches(files_path[0], museum)
