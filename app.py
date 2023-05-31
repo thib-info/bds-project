@@ -5,18 +5,19 @@ import time
 import os
 from flask import Flask, render_template, request
 from src.HomeBackend.card import generateCardHtml, get_random_files, get_image_path, get_file_common_info
-from src.HomeBackend.preprocessing import extract_info, find_matches
+from src.HomeBackend.infoExtraction import extract_info
+from src.HomeBackend.relationMapping import find_matches
 
 app = Flask(__name__, template_folder='templatesFiles', static_folder='staticFiles')
 
 data_request = {}
 select_card = {}
 cards_info = {}
-select_card_mapping = {}
+cards_mapping = {}
 global_data = {
     'select_card': select_card,
     'cards_info': cards_info,
-    'select_card_mapping': select_card_mapping
+    'select_card_mapping': cards_mapping
 }
 
 correct = False
@@ -26,26 +27,31 @@ cards_id = []
 cards_name = []
 cards_bck = []
 while ind < 3:
-    try:
-        file_path = get_random_files(1)
-        [card_id, card_name] = get_file_common_info(file_path)
-        card_bck = get_image_path(file_path)
+    file_path = get_random_files(1)
+    [card_id, card_name] = get_file_common_info(file_path)
+    card_bck = get_image_path(file_path)
 
-        if not os.path.exists(card_bck[0][1:]):
-            continue
+    if not os.path.exists(card_bck[0][1:]):
+        continue
 
-        files_path.append(file_path[0])
-        cards_id.append(card_id[0])
-        cards_name.append(card_name[0])
-        cards_bck.append(card_bck[0])
+    files_path.append(file_path[0])
+    cards_id.append(card_id[0])
+    cards_name.append(card_name[0])
+    cards_bck.append(card_bck[0])
 
-        ind = ind + 1
-    except Exception as e:
-        print(e)
+    ind += 1
 
 for file in files_path:
     cards_info[file] = extract_info(file)
 
+# Will be uncomment for the final version but takes time to init to skip it for the debug dev.
+"""
+    if os.name == "nt":
+        museum = (files_path[0].split('/')[3]).split('\\')[0]
+    else:
+        museum = files_path[0].split('/')[3]
+    cards_mapping[file] = find_matches(file, museum)
+"""
 
 @app.route('/api/data')
 def get_data():
@@ -56,7 +62,7 @@ def get_data():
 def get_new_card():
     done = False
     global cards_info
-    while done is False:
+    while(done == False):
         try:
             new_card_path = get_random_files(1)
             [new_card_id, new_card_name] = get_file_common_info(new_card_path)
@@ -85,22 +91,23 @@ def get_new_card():
 
 @app.route('/api/setSuggestions', methods=['POST'])
 def getSuggestions():
-    global select_card_mapping
+    global cards_mapping
     data = request.json
 
     card_path = data.get('card_path')
-    museum = card_path.split('/')[3]
-    print(card_path)
-    print(museum)
-    mappings = find_matches(card_path, museum)
-    print(mappings)
-    mappings_img = get_image_path(mappings, museum)
-    print(mappings_img)
 
-    select_card_mapping[card_path] = {
-        'files_path': mappings,
-        'images_path': mappings_img
-    }
+    if os.name == "nt":
+        museum_name = (card_path.split('/')[3]).split('\\')[0]
+    else:
+        museum_name = card_path.split('/')[3]
+
+    if card_path not in cards_mapping:
+        mappings = find_matches(card_path, museum_name)
+        cards_suggestion_img = get_image_path(mappings, museum_name)
+        cards_mapping[card_path] = {
+            'files_path': mappings,
+            'images_path': cards_suggestion_img
+        }
 
     return 'Success'
 
