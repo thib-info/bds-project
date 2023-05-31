@@ -6,6 +6,7 @@ import os
 from flask import Flask, render_template, request
 from src.HomeBackend.card import generateCardHtml, get_random_files, get_image_path, get_file_common_info
 from src.HomeBackend.infoExtraction import extract_info
+from src.HomeBackend.placeSuggestion import recommended_places
 from src.HomeBackend.relationMapping import find_matches
 
 app = Flask(__name__, template_folder='templatesFiles', static_folder='staticFiles')
@@ -14,10 +15,12 @@ data_request = {}
 select_card = {}
 cards_info = {}
 cards_mapping = {}
+cards_reco = {}
 global_data = {
     'select_card': select_card,
     'cards_info': cards_info,
-    'select_card_mapping': cards_mapping
+    'select_card_mapping': cards_mapping,
+    'cards_reco': cards_reco
 }
 
 correct = False
@@ -44,14 +47,26 @@ while ind < 3:
 for file in files_path:
     cards_info[file] = extract_info(file)
 
-# Will be uncomment for the final version but takes time to init to skip it for the debug dev.
-"""
     if os.name == "nt":
         museum = (files_path[0].split('/')[3]).split('\\')[0]
     else:
         museum = files_path[0].split('/')[3]
-    cards_mapping[file] = find_matches(file, museum)
-"""
+
+    if museum not in cards_reco:
+        print('add-reco')
+        cards_reco[museum] = recommended_places(museum)
+
+    mappings = find_matches(file, museum)
+    cards_mapping[file] = mappings
+    cards_suggestion_img = get_image_path(mappings, museum)
+    details = get_file_common_info(mappings)
+
+    cards_mapping[file] = {
+        'files_path': mappings,
+        'images_path': cards_suggestion_img,
+        'details': details,
+    }
+
 
 @app.route('/api/data')
 def get_data():
@@ -104,10 +119,32 @@ def getSuggestions():
     if card_path not in cards_mapping:
         mappings = find_matches(card_path, museum_name)
         cards_suggestion_img = get_image_path(mappings, museum_name)
+        details = get_file_common_info(mappings)
+
         cards_mapping[card_path] = {
             'files_path': mappings,
-            'images_path': cards_suggestion_img
+            'images_path': cards_suggestion_img,
+            'details': details,
         }
+
+    return 'Success'
+
+
+@app.route('/api/setReco', methods=['POST'])
+def getReco():
+    global cards_reco
+    data = request.json
+
+    card_path = data.get('museum')
+
+    if os.name == "nt":
+        museum_name = (card_path.split('/')[3]).split('\\')[0]
+    else:
+        museum_name = card_path.split('/')[3]
+
+    if card_path not in cards_reco:
+        reco = recommended_places(museum_name)
+        cards_reco[museum_name] = reco
 
     return 'Success'
 

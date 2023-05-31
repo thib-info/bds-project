@@ -36,3 +36,16 @@ async function fetchSuggestions(){
         return null;
     }
 }
+
+async function fetchReco(){
+    const result = await fetch('/api/data')
+    try{
+        const data = await result.json();
+        console.log(data);
+        console.log('test');
+        return data.cards_reco;
+    }catch (error){
+        console.log('Error fetching data:', error);
+        return null;
+    }
+}

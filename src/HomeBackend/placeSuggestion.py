@@ -1,7 +1,7 @@
 import googlemaps as gm
 import pandas as pd
 
-from infoExtraction import add_to_dic
+from .infoExtraction import add_to_dic
 
 key = 'AIzaSyAmx0c-Oqr8XPUVYpO63tJ8eLe9AV-8a6w'
 
@@ -140,7 +140,7 @@ def get_details(row):
 ''' Recommend places based on museum '''
 def recommended_places(museum):
     
-    df = pd.read_json('..\..\datasets\POI\pois.json')
+    df = pd.read_json('./datasets/POI/pois.json')
 
     museum_coords = {'alijn': '51.05755362299733, 3.723522739298267', 'design': '51.05590007151709, 3.719668184088063',
                      'industrie': ' 51.059572076526635, 3.729351512923772', 'stam': '51.04408963545599, 3.7175096975808697', 'archief': '51.04584607079588, 3.7505423487840495'}

@@ -26,7 +26,7 @@
 
 .container-details {
     width: 100%;
-    margin: auto;
+    margin: 2% auto;
     color: black;
 }
 
@@ -34,7 +34,7 @@
     display: flex;
     flex-direction: column;
     width: 80%;
-    margin: auto;
+    margin: 2% auto;
 }
 
 .container-card-suggestion {
@@ -105,7 +105,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
 }
 
 .card {
@@ -157,4 +156,81 @@ body {
   transform: translateY(-50%);
   width: 20px;
   height: 40px;
+}
+
+.rectangle-container {
+    width: 80%;
+    height: 300px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    overflow-y: scroll;
+    margin: 10px auto 3% auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+.rectangle-legends {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+    width: 100%;
+}
+
+.legend {
+  font-weight: bold;
+}
+
+.selectable-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.selectable-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+.selectable-item:hover {
+  background-color: #e0e0e0;
+}
+
+.selectable-item.selected {
+  background-color: #6ac47e;
+  color: #fff;
+}
+
+.selectable-items {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow-y: auto;
+    width: 100%;
+}
+
+.name {
+  flex-basis: 40%;
+}
+
+.type {
+  flex-basis: 30%;
+}
+
+.location {
+
+}
+
+#map {
+    width: 80%;
+    margin: 2% auto 3% auto;
+    height: 400px;
 }

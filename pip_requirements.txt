@@ -10,3 +10,4 @@ plotly==5.4.0
 werkzeug==2.0.2
 geojson==3.0.1
 pyspark=3.4.0
+googlemaps=4.10.0
