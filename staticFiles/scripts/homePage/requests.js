@@ -54,3 +54,28 @@ async function fetchNewCard() {
         console.log('Error fetching data:', error);
     }
 }
+
+async function calculateSuggestions(card_file_path) {
+
+    const data = {
+      card_path: card_file_path
+    };
+
+    const result = await fetch('/api/setSuggestions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    });
+
+    try{
+      if(result.ok){
+         console.log('Data sent successfully');
+      }else{
+          console.error('Failed to send data');
+      }
+    }catch(error){
+        console.error('Error occurred while sending data:', error);
+    }
+}
