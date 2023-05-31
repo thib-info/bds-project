@@ -1,14 +1,58 @@
+function getImgPath(){
+    let img = document.getElementById('object-selected-image');
+    return img.getAttribute('src');
+}
+
+function getFilePath(){
+    let img = document.getElementById('object-selected-image');
+    return img.getAttribute('file_path');
+}
+
 function addLoaderListener() {
     window.addEventListener('load', function () {
         setTimeout(function () {
             let loadingScreen = document.getElementById('loading-screen');
             loadingScreen.parentNode.removeChild(loadingScreen);
-        }, 1000); // Simulating a 3-second delay
+        }, 1000);
     });
 }
 
 async function fetchTheInitData(){
     await getDetails();
+    await getSuggestions()
+}
+
+async function getSuggestions(){
+    const dict_suggestions = await fetchSuggestions();
+    const file_path = getFilePath();
+    const suggestions_paths = dict_suggestions[file_path]['files_path'];
+    const suggestions_img = dict_suggestions[file_path]['images_path'];
+
+    addSuggestionCard(suggestions_img);
+    addArrowListener();
+
+}
+
+function addArrowListener(){
+    const cardsContainer = document.querySelector('.cards-container');
+    const sliderArrow = document.querySelector('.slider-arrow');
+
+    sliderArrow.addEventListener('click', () => {
+      const cardWidth = cardsContainer.firstElementChild.offsetWidth;
+      cardsContainer.style.transform = `translateX(-${cardWidth}px)`;
+      cardsContainer.appendChild(cardsContainer.firstElementChild);
+    });
+}
+
+function addSuggestionCard(suggestedCards){
+    const cardsContainer = document.querySelector('.cards-container');
+
+    suggestedCards.forEach((cardData) => {
+      const cardElement = document.createElement('div');
+      cardElement.classList.add('card-suggest');
+      cardElement.style.backgroundImage = `url(${cardData})`;
+      cardsContainer.appendChild(cardElement);
+    });
 }
 
 async function getDetails() {

@@ -9,11 +9,11 @@ from src.HomeBackend.preprocessing import extract_info, find_matches
 
 app = Flask(__name__, template_folder='templatesFiles', static_folder='staticFiles')
 
+data_request = {}
 select_card = {}
 cards_info = {}
 select_card_mapping = {}
-data_request = {
-    'request_type': 'None',
+global_data = {
     'select_card': select_card,
     'cards_info': cards_info,
     'select_card_mapping': select_card_mapping
@@ -49,7 +49,7 @@ for file in files_path:
 
 @app.route('/api/data')
 def get_data():
-    return data_request
+    return global_data
 
 
 @app.route('/api/getNewCard')
@@ -94,7 +94,13 @@ def getSuggestions():
     print(museum)
     mappings = find_matches(card_path, museum)
     print(mappings)
-    select_card_mapping[card_path] = mappings
+    mappings_img = get_image_path(mappings, museum)
+    print(mappings_img)
+
+    select_card_mapping[card_path] = {
+        'files_path': mappings,
+        'images_path': mappings_img
+    }
 
     return 'Success'
 

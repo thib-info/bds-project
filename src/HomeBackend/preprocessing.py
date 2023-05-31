@@ -186,7 +186,10 @@ def find_matches(file_path, museum):
         dir = os.listdir(folder_path)
 
         for file in dir:
+            print(file)
+            print(folder_path)
             if id in file:
-                paths += [(folder_path + file)[6:]]
+                path = folder_path + '/' + file
+                paths.append(path)
 
     return paths
