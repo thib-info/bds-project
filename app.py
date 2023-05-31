@@ -5,7 +5,8 @@ import time
 import os
 from flask import Flask, render_template, request
 from src.HomeBackend.card import generateCardHtml, get_random_files, get_image_path, get_file_common_info
-from src.HomeBackend.preprocessing import extract_info, find_matches
+from src.HomeBackend.infoExtraction import extract_info
+from src.HomeBackend.relationMapping import find_matches
 
 app = Flask(__name__, template_folder='templatesFiles', static_folder='staticFiles')
 
@@ -21,29 +22,30 @@ cards_id = []
 cards_name = []
 cards_bck = []
 while ind < 3:
-    try:
-        file_path = get_random_files(1)
-        [card_id, card_name] = get_file_common_info(file_path)
-        card_bck = get_image_path(file_path)
+    file_path = get_random_files(1)
+    [card_id, card_name] = get_file_common_info(file_path)
+    card_bck = get_image_path(file_path)
 
-        if not os.path.exists(card_bck[0][1:]):
-            continue
+    if not os.path.exists(card_bck[0][1:]):
+        continue
 
-        files_path.append(file_path[0])
-        cards_id.append(card_id[0])
-        cards_name.append(card_name[0])
-        cards_bck.append(card_bck[0])
+    files_path.append(file_path[0])
+    cards_id.append(card_id[0])
+    cards_name.append(card_name[0])
+    cards_bck.append(card_bck[0])
 
-        ind = ind + 1
-    except Exception as e:
-        print(e)
+    ind += 1
 
 for file in files_path:
     cards_info[file] = extract_info(file)
 
 
 print(files_path[0].split('/')[3])
-result = find_matches(files_path[0], files_path[0].split('/')[3])
+if os.name == "nt":
+    museum = (files_path[0].split('/')[3]).split('\\')[0]
+else:
+    museum = files_path[0].split('/')[3]
+result = find_matches(files_path[0], museum)
 print("REUSLT ")
 print(result)
 
@@ -57,7 +59,7 @@ def get_data():
 def get_new_card():
     done = False
     global cards_info
-    while done is False:
+    while(done == False):
         try:
             new_card_path = get_random_files(1)
             [new_card_id, new_card_name] = get_file_common_info(new_card_path)
