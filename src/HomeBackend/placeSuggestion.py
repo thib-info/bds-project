@@ -30,24 +30,21 @@ def get_duration(source, dest):
     return duration
 
 
-''' Filter dataset to places within 10 min walking distance from a muuseum's coordinates '''
+''' Filter dataset to places within 7 min walking distance from a museum's coordinates '''
 
 
 def filter_walking_distance(df, museum):
-
     walking_distance = []
 
-    ''' Itrate over coordinates '''
-    for i in range(len(df['coordinate'])):
+    for i, coord in enumerate(df['coordinate']):
+        
+        dest = coordsToString(coord)
+        
+        if get_duration(museum, dest) < 6:
+            walking_distance.append(i)
 
-        dest = coordsToString(df['coordinate'][i])
-
-        if get_duration(museum, dest) < 10:
-            walking_distance += [i]
-
-    filtered = df.iloc[walking_distance]
-    filtered = filtered.dropna(axis=1, how='all')
-
+    filtered = df.iloc[walking_distance].dropna(axis=1, how='all')
+    
     return filtered
 
 
@@ -140,7 +137,11 @@ def get_details(row):
 
     return dic
 
-''' Recommend static places '''
+print('\n\n\n\n---------------------------------------------')
+print("''''''''''''''''''''DEBUG''''''''''''''''''''")
+print('---------------------------------------------\n\n\n\n')
+
+
 def recommended_places(museum):
     
     df = pd.read_json('..\..\datasets\POI\pois.json')
@@ -148,7 +149,7 @@ def recommended_places(museum):
     museum_coords = {'alijn': '51.05755362299733, 3.723522739298267', 'design': '51.05590007151709, 3.719668184088063',
                      'industrie': ' 51.059572076526635, 3.729351512923772', 'stam': '51.04408963545599, 3.7175096975808697', 'archief': '51.04584607079588, 3.7505423487840495'}
 
-    amenities = ['cafe', 'pub', 'cinema', 'nightclub', 'ice_cream', 'theatre']
+    amenities = ['restaurant', 'cafe', 'bar', 'cinema', 'nightclub', 'ice_cream', 'theatre']
 
     df = df[df['amenity'].isin(amenities)]
     df = df.reset_index(drop=True).dropna(axis=1, how='all')
@@ -157,18 +158,29 @@ def recommended_places(museum):
 
     df = filter_walking_distance(df, source)
 
-    df = df.iloc[[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]]
-
     places = []
 
-    for index, row in df.iterrows():
+    limits = {'restaurant': 2, 'cafe': 1, 'bar': 1, 'pub': 1, 'theatre': 1, 'ice_cream': 1, 'nightclub': 1, 'cinema': 1}
 
-        places += [get_details(row)]
+    def update_limit(place):
+        limits[place] -= 1
+        return limits[place]
 
+    df['details'] = df.apply(get_details, axis=1)
+    df['place'] = df['details'].apply(lambda details: details['Amenity'][0])
+    df['place_limit'] = df['place'].apply(update_limit)
+    
+    filtered = df[df['place_limit'] >= 0]
+    
+    places = filtered['details'].tolist()
+            
     return places
 
+import time
 
-
-
-
-
+s = time.time()
+x = recommended_places('alijn')
+f = time.time()
+for i in x:
+    print(i)
+print("Elapsed time: {:.2f} seconds".format(f-s))
