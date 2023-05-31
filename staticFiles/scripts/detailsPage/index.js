@@ -1,6 +1,7 @@
 let map;
 let data;
 let init_coordinates = {lat: 0, lon: 0};
+let markers = {};
 
 function getImgPath(){
     let img = document.getElementById('object-selected-image');
@@ -117,6 +118,7 @@ function addPlacesListeners(){
             addPlaceToMap(item);
           console.log('Selected:', item.textContent);
         } else {
+            removeMarker(item);
           console.log('Deselected:', item.textContent);
         }
       });
@@ -167,12 +169,34 @@ function initMap() {
     map = new google.maps.Map(document.getElementById('map'), mapOptions );
 }
 
+function getRandomHexColor() {
+  // Generate random RGB values
+  const red = Math.floor(Math.random() * 256);
+  const green = Math.floor(Math.random() * 256);
+  const blue = Math.floor(Math.random() * 256);
+
+  // Convert RGB to hexadecimal format
+    return `#${red.toString(16)}${green.toString(16)}${blue.toString(16)}`;
+}
+
+function removeMarker(item){
+    const index = item.getAttribute('index');
+    const place = data[index];
+
+    if(markers.hasOwnProperty(place.Name)){
+        marker = markers[place.Name];
+        marker.setMap(null);
+    }
+}
+
+
 function addPlaceToMap(item) {
   const index = item.getAttribute('index');
   const place = data[index];
   const coordinates = place['Coordinates'];
   const position = { lat: parseFloat(coordinates.latitude), lng: parseFloat(coordinates.longitude) };
   const customData = {};
+  const color = getRandomHexColor();
 
   Object.keys(place).forEach((key) => {
     if(Array.isArray(place[key]) === true)
@@ -184,19 +208,21 @@ function addPlaceToMap(item) {
       map,
       title: place.Name[0],
       label: {
-        text: "A",
-        color: "#ffffff",
+        text: place.Name[0][0],
+        color: '#000000',
       },
       icon: {
         path: google.maps.SymbolPath.CIRCLE,
-        scale: 10,
-        fillColor: "#ff0000",
+        scale: 20,
+        fillColor: color,
         fillOpacity: 1,
         strokeWeight: 2,
         strokeColor: "#ffffff",
       },
       customData
   });
+
+  markers[place.Name] = marker;
 
     const infoWindow = new google.maps.InfoWindow();
     marker.addListener('click', function() {
@@ -236,13 +262,16 @@ function getInitCoordinates(){
 }
 
 async function main(){
+    let museum = getMuseum();
     let sample = [ {'Amenity': ['pub'], 'Name': ['The Celtic Towers'], 'Address': 'Sint-Michielshelling 5/6, 9000 Gent', 'Coordinates': {'latitude': 51.0537928, 'longitude': 3.721227}},
 
 {'Amenity': ['cinema'], 'Name': ['Sphinx'], 'Address': 'Sint-Michielshelling 7, 9000 Gent', 'Coordinates': {'latitude': 51.0537291, 'longitude': 3.7215956}, 'Phone number': ['+32 9 225 60 86'], 'Website': ['https://www.sphinx-cinema.be/'], 'Wheelchair': ['no'], 'Payment': ['yes']} ];
-    data = sample
+
     addLoaderListener();
     await fetchTheInitData();
-    addPlaces(sample);
+    const reco = (await fetchReco())[museum];
+    data = reco;
+    addPlaces(reco);
     addPlacesListeners();
 }
 
