@@ -42,12 +42,6 @@ for file in files_path:
     cards_info[file] = extract_info(file)
 
 
-print(files_path[0].split('/')[3])
-result = find_matches(files_path[0], files_path[0].split('/')[3])
-print("REUSLT ")
-print(result)
-
-
 @app.route('/api/data')
 def get_data():
     return data_request

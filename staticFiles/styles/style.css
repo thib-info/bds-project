@@ -13,6 +13,12 @@ body {
 
 .tbgwrap {
   padding: 10px;
+  width: 96vw;
+  margin-top: 3%;
+}
+
+.container-card-info-img {
+  position: relative;
 }
 
 .theader {
@@ -49,7 +55,7 @@ body {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .tcontrols {
@@ -57,13 +63,12 @@ body {
     justify-content: space-evenly;
     align-items: center;
     width: 50%;
-    margin: auto;
+    margin: 4% auto auto auto;
 }
 
 .tphoto {
   width: 350px;
   height: 350px;
-  overflow: hidden;
   margin: 0 auto;
   position: relative;
   top: 15px;
@@ -75,6 +80,7 @@ body {
   padding-bottom: 60px;
   background-color: #fff;
   box-shadow: 2px 2px 2px #c0c0c0;
+  overflow: visible;
 }
 
 .tname {
@@ -82,6 +88,7 @@ body {
   font-size: 20px;
   font-family: "Helvetica", sans-serif;
   float: left;
+  margin-top: -43px;
 }
 
 .tname .age {
@@ -189,7 +196,7 @@ body {
 }
 
 .tphoto.card.accepted {
-  transform: translateX(100%);
+  transform: translateX(50%);
 }
 
 .tphoto.card.rejected {
@@ -206,7 +213,7 @@ body {
 
 .card-container {
   position: relative;
-  width: 30%;
+  width: 50%;
   margin: auto;
   height: 350px;
 }
@@ -225,19 +232,16 @@ body {
 
 .container {
   display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
   height: 100vh;
 }
 
 .card-wrapper {
   flex: 2;
   position: relative;
-}
-
-.card-container {
-  position: relative;
-  width: 30%;
-  margin: auto;
-  height: 350px;
 }
 
 .card-container .tphoto {
@@ -250,9 +254,8 @@ body {
 
 .card-info {
   position: absolute;
-  top: 45%;
-  left: 27%;
-  transform: translate(-50%, -50%);
+  top: 10%;
+  left: 5%;
   opacity: 0;
   background-color: #f0f0f0;
   padding: 20px;
@@ -266,4 +269,21 @@ body {
 
 .card-info.show {
   opacity: 1;
+}
+
+.ti {
+  height: 120px;
+  width: 120px;
+  top: 50px;
+  left: 40px;
+}
+
+.ti .fa-info {
+  font-size: 80px;
+  color: mediumseagreen;
+  padding: 17px 46px;
+}
+
+.tyes {
+  left: 40px;
 }
