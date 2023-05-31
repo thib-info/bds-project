@@ -11,7 +11,9 @@ from src.HomeBackend.relationMapping import find_matches
 app = Flask(__name__, template_folder='templatesFiles', static_folder='staticFiles')
 
 data_request = {'request_type': 'None'}
+select_card = {}
 cards_info = {}
+cards_mapping = {}
 
 correct = False
 ind = 0
@@ -34,17 +36,16 @@ while ind < 3:
 
     ind += 1
 
+# Will be uncomment for the final version but takes time to init to skip it for the debug dev.
+"""
 for file in files_path:
     cards_info[file] = extract_info(file)
-
-print(files_path[0].split('/')[3])
-if os.name == "nt":
-    museum = (files_path[0].split('/')[3]).split('\\')[0]
-else:
-    museum = files_path[0].split('/')[3]
-result = find_matches(files_path[0], museum)
-print("REUSLT ")
-print(result)
+    if os.name == "nt":
+        museum = (files_path[0].split('/')[3]).split('\\')[0]
+    else:
+        museum = files_path[0].split('/')[3]
+    cards_mapping[file] = find_matches(file, museum)
+"""
 
 @app.route('/api/data')
 def get_data():
@@ -82,9 +83,27 @@ def get_new_card():
     return data
 
 
+@app.route('/api/setSuggestions', methods=['POST'])
+def getSuggestions():
+    global cards_mapping
+    data = request.json
+
+    card_path = data.get('card_path')
+
+    if os.name == "nt":
+        museum_name = (card_path.split('/')[3]).split('\\')[0]
+    else:
+        museum_name = card_path.split('/')[3]
+
+    if card_path not in cards_mapping:
+        mappings = find_matches(card_path, museum_name)
+        cards_mapping[card_path] = mappings
+
+    return 'Success'
+
+
 @app.route('/')
 def home():
-    # Inject data into the HTML template
     data = {
         'title': 'Home Page',
         'message': 'Welcome to the home page!',
@@ -106,19 +125,37 @@ def about():
     return render_template('about.html', data=data)
 
 
+@app.route('/selectedCard')
+def selectedCard():
+    global select_card
+
+    data = {
+        'path': select_card['image_path'],
+    }
+    return render_template('selectedCard.html', data=data)
+
+
 @app.route('/details-card', methods=['POST'])
 def process_card():
-    global data_request, cards_info
+    global data_request, cards_info, select_card
+
     data = request.json
 
-    card_id = data.get('card_id')
-    file_path = data.get('file_path')
-    card_info = cards_info[file_path]
+    card_id_get = data.get('card_id')
+    file_path_get = data.get('file_path')
+    image_path = data.get('image_path')
+
+    card_info = cards_info[file_path_get]
 
     data_request = {
         'request_type': 'cardInfo',
         'content': card_info
     }
+
+    select_card['path'] = file_path_get
+    select_card['id'] = card_id_get
+    select_card['details'] = card_info
+    select_card['image_path'] = image_path
 
     return data_request
 

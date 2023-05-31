@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My date</title>
+    <link rel="stylesheet" href="/staticFiles/styles/style.css">
+    <link rel="stylesheet" href="/staticFiles/styles/details.css">
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="loading-icon"></div>
+    </div>
+    <div class="main-details-container">
+
+        <div class="container-details-left">
+            <div class="object-image">
+                <img id="object-selected-image" src="{{data.path}}" alt="Object selected for the date">
+            </div>
+            <div class="container-details"></div>
+            <div class="container-suggestions">
+                <h2 class="suggestion-text"> You could also like </h2>
+                <div class="container-card-suggestion">
+                    <div class="card-suggestion"></div>
+                    <div class="card-suggestion"></div>
+                    <div class="card-suggestion"></div>
+                    <div class="card-suggestion"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-details-right">
+            <h2 class="title-date">Organize my date</h2>
+            <div class="container-date-ideas"></div>
+            <div class="container-map"></div>
+        </div>
+    </div>
+    <script src="/staticFiles/scripts/detailsPage/index.js"></script>
+</body>
+</html>

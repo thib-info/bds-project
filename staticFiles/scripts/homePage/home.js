@@ -8,7 +8,9 @@ function addBtnListeners(){
     confirmBtn.addEventListener('click', async () => {
         let acceptedCard = document.getElementsByClassName('tphoto card current')[0];
         let file_path = acceptedCard.getAttribute('file_path');
-        await sendDataToServer(acceptedCard.id, file_path);
+        let image_path = acceptedCard.getAttribute('style').split('url(')[1].split(')')[0];
+        await sendDataToServer(acceptedCard.id, file_path, image_path);
+        calculateSuggestions(file_path).then(r => {});
     });
 
     infoBtn.addEventListener('click', () => {
@@ -23,7 +25,7 @@ function addBtnListeners(){
 
     goDetailsBtn.addEventListener('click', () => {
         console.log("info");
-        window.location.href = "/about";
+        window.location.href = "/selectedCard";
     });
 
 }
