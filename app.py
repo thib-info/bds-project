@@ -123,6 +123,7 @@ def selectedCard():
 
     data = {
         'path': select_card['image_path'],
+        'file_path': select_card['path']
     }
     return render_template('selectedCard.html', data=data)
 
@@ -133,7 +134,6 @@ def process_card():
 
     data = request.json
 
-    card_id_get = data.get('card_id')
     file_path_get = data.get('file_path')
     image_path = data.get('image_path')
 
@@ -145,7 +145,6 @@ def process_card():
     }
 
     select_card['path'] = file_path_get
-    select_card['id'] = card_id_get
     select_card['details'] = card_info
     select_card['image_path'] = image_path
 

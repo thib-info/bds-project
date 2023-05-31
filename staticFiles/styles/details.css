@@ -16,7 +16,7 @@
   justify-content: center;
   align-items: center;
   height: 300px;
-  margin: auto auto 1%;
+  margin: 2% auto 1%;
 }
 
 .object-image img {
@@ -25,10 +25,8 @@
 }
 
 .container-details {
-    width: 80%;
+    width: 100%;
     margin: auto;
-    padding: 2%;
-    background-color: sandybrown;
     color: black;
 }
 
@@ -107,4 +105,35 @@ body {
     margin: 5% auto;
     padding: 2%;
     border: 1px solid #ccc;
+}
+
+.container-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.card {
+  width: 80%;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.column {
+  flex: 1;
+}
+
+.columns-wrapper {
+  display: flex;
+}
+
+.column p {
+  margin-bottom: 10px;
+}
+
+.full-width {
+  width: 100%;
 }

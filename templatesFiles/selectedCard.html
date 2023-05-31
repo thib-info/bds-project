@@ -14,9 +14,18 @@
 
         <div class="container-details-left">
             <div class="object-image">
-                <img id="object-selected-image" src="{{data.path}}" alt="Object selected for the date">
+                <img id="object-selected-image" file_path="{{data.file_path}}" src="{{data.path}}" alt="Object selected for the date">
             </div>
-            <div class="container-details"></div>
+            <div class="container-details">
+                 <div class="card">
+                    <div class="column">
+                      <!-- Left column -->
+                    </div>
+                    <div class="column">
+                      <!-- Right column -->
+                    </div>
+                 </div>
+            </div>
             <div class="container-suggestions">
                 <h2 class="suggestion-text"> You could also like </h2>
                 <div class="container-card-suggestion">
@@ -34,6 +43,7 @@
             <div class="container-map"></div>
         </div>
     </div>
+    <script src="/staticFiles/scripts/detailsPage/requests.js"></script>
     <script src="/staticFiles/scripts/detailsPage/index.js"></script>
 </body>
 </html>
