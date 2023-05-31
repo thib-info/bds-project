@@ -175,12 +175,3 @@ def recommended_places(museum):
     places = filtered['details'].tolist()
             
     return places
-
-import time
-
-s = time.time()
-x = recommended_places('alijn')
-f = time.time()
-for i in x:
-    print(i)
-print("Elapsed time: {:.2f} seconds".format(f-s))
