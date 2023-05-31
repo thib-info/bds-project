@@ -13,7 +13,7 @@ app = Flask(__name__, template_folder='templatesFiles', static_folder='staticFil
 data_request = {'request_type': 'None'}
 select_card = {}
 cards_info = {}
-select_card_mapping = {}
+cards_mapping = {}
 
 correct = False
 ind = 0
@@ -36,19 +36,16 @@ while ind < 3:
 
     ind += 1
 
+# Will be uncomment for the final version but takes time to init to skip it for the debug dev.
+"""
 for file in files_path:
     cards_info[file] = extract_info(file)
-
-
-print(files_path[0].split('/')[3])
-if os.name == "nt":
-    museum = (files_path[0].split('/')[3]).split('\\')[0]
-else:
-    museum = files_path[0].split('/')[3]
-result = find_matches(files_path[0], museum)
-print("REUSLT ")
-print(result)
-
+    if os.name == "nt":
+        museum = (files_path[0].split('/')[3]).split('\\')[0]
+    else:
+        museum = files_path[0].split('/')[3]
+    cards_mapping[file] = find_matches(file, museum)
+"""
 
 @app.route('/api/data')
 def get_data():
@@ -88,16 +85,19 @@ def get_new_card():
 
 @app.route('/api/setSuggestions', methods=['POST'])
 def getSuggestions():
-    global select_card_mapping
+    global cards_mapping
     data = request.json
 
     card_path = data.get('card_path')
-    museum = card_path.split('/')[3]
-    print(card_path)
-    print(museum)
-    mappings = find_matches(card_path, museum)
-    print(mappings)
-    select_card_mapping[card_path] = mappings
+
+    if os.name == "nt":
+        museum_name = (card_path.split('/')[3]).split('\\')[0]
+    else:
+        museum_name = card_path.split('/')[3]
+
+    if card_path not in cards_mapping:
+        mappings = find_matches(card_path, museum_name)
+        cards_mapping[card_path] = mappings
 
     return 'Success'
 
