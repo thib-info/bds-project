@@ -5,7 +5,8 @@ import time
 import os
 from flask import Flask, render_template, request
 from src.HomeBackend.card import generateCardHtml, get_random_files, get_image_path, get_file_common_info
-from src.HomeBackend.preprocessing import extract_info, find_matches
+from src.HomeBackend.infoExtraction import extract_info
+from src.HomeBackend.relationMapping import find_matches
 
 app = Flask(__name__, template_folder='templatesFiles', static_folder='staticFiles')
 
