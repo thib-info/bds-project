@@ -95,5 +95,4 @@ def extract_info(file_path):
 
                 elif 'periode' in label:
                     dic = add_to_dic(dic, 'Periode', value)
-
     return dic

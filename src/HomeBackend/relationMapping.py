@@ -76,6 +76,6 @@ def find_matches(file_path, museum):
 
         for file in dir:
             if id in file:
-                paths += [(folder_path + file)[6:]]
+                paths.append(folder_path + '/' + file)
 
     return paths
